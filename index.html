@@ -13,47 +13,24 @@
 <style>
 :root{--paper:#faf9f6;--ink:#1c1917;--muted:#57534e;--accent:#9a3412;--line:#e7e5e4;--serif:"Noto Serif Georgian",Georgia,serif}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.7 "Noto Sans Georgian",sans-serif}h1,h2,h3{font-family:var(--serif);line-height:1.25;margin:0}p{margin:0}a{color:inherit}button,input{font:inherit}button{cursor:pointer}img{display:block;width:100%;height:100%;object-fit:cover}svg{width:1.15rem;height:1.15rem;flex:none}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:4px}[hidden]{display:none!important}
-.wrap{width:min(1180px,calc(100% - 3rem));margin-inline:auto}.top{border-bottom:1px solid var(--line)}.nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:1rem}.brand{display:inline-flex;align-items:center;gap:.65rem;font-family:var(--serif);font-weight:700;text-decoration:none}.mark{display:grid;place-items:center;width:35px;height:35px;border:1px solid #d7aa98;color:var(--accent);border-radius:50%}.nav-link{font-size:.875rem;text-decoration:none;color:var(--muted)}.nav-link:hover{color:var(--accent)}
-.hero{display:grid;grid-template-columns:1fr 1.02fr;gap:clamp(2rem,6vw,6rem);align-items:center;padding-block:3.5rem 3.75rem}.eyebrow{display:flex;align-items:center;gap:.75rem;color:var(--accent);font-weight:700;font-size:.82rem}.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}.hero h1{font-size:clamp(2.8rem,5.5vw,5.2rem);font-weight:700;letter-spacing:-.055em;margin:.65rem 0 1rem}.hero p{max-width:37ch;color:var(--muted)}.hero-photo{margin:0;position:relative;aspect-ratio:1.65;background:#d7c3ad;overflow:hidden}.hero-photo img{object-position:center 55%}.hero-photo figcaption{position:absolute;bottom:0;left:0;background:var(--paper);padding:.35rem .75rem;color:var(--muted);font-size:.75rem}
-.search{position:relative;display:flex;align-items:center;gap:.75rem;margin-top:1.6rem;background:#fff;border:1px solid #d6d3d1;border-radius:6px;padding:0 .9rem;color:var(--muted);max-width:475px}.search input{min-width:0;width:100%;height:52px;border:0;background:transparent;color:var(--ink);font-size:.875rem}.search:focus-within{outline:2px solid var(--accent);outline-offset:2px}.search input:focus-visible{outline:0}
-.guide{border-top:1px solid var(--line);padding-block:2rem 4rem}.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:.7rem;margin-bottom:1.25rem}.section-head h2{font-size:clamp(1.6rem,3.3vw,2.2rem);font-weight:700}.count{font-size:.85rem;color:var(--muted);white-space:nowrap}.filters{display:flex;gap:.55rem;flex-wrap:wrap;margin-bottom:1.5rem}.pill{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:.45rem .95rem;font-size:.875rem}.pill:hover{border-color:var(--accent);color:var(--accent)}.pill[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.wrap{width:min(1180px,calc(100% - 3rem));margin-inline:auto}
+.guide{padding-block:2rem 4rem}.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:.7rem;margin-bottom:1.25rem}.section-head h1{font-size:clamp(1.6rem,3.3vw,2.2rem);font-weight:700}.count{font-size:.85rem;color:var(--muted);white-space:nowrap}.filters{display:flex;gap:.55rem;flex-wrap:wrap;margin-bottom:1.5rem}.pill{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:.45rem .95rem;font-size:.875rem}.pill:hover{border-color:var(--accent);color:var(--accent)}.pill[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
 .cards{display:grid;gap:1.25rem}@media(min-width:768px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(min-width:1024px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}.card{display:flex;flex-direction:column;width:100%;height:100%;border:1px solid var(--line);background:#fff;text-align:left;color:inherit;padding:0;border-radius:8px;overflow:hidden;transition:box-shadow .3s,transform .3s}.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px #30201215}.card-image{display:block;position:relative;width:100%;aspect-ratio:1.85;overflow:hidden;background:linear-gradient(145deg,#a37a60,#e0cbb4)}.card-image img{transition:transform .3s}.card:hover img{transform:scale(1.05)}.badge{position:absolute;left:.8rem;bottom:.75rem;background:var(--paper);border-radius:4px;padding:.23rem .55rem;font-size:.77rem;font-weight:600}.card-body{display:grid;gap:.65rem;padding:1.15rem 1.15rem 1.25rem}.card-title{font:700 1.27rem/1.45 var(--serif)}.dish{color:var(--accent);font-size:.875rem;font-weight:700;display:flex;align-items:center;gap:.45rem}.dish svg{width:1rem;height:1rem}.teaser{color:var(--muted);font-size:.92rem;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}.card.appear{animation:appear .3s ease both}@keyframes appear{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}.empty{padding:2rem;border:1px solid var(--line);text-align:center;color:var(--muted)}
 footer{border-top:1px solid var(--line);padding:1.5rem 0;color:var(--muted);font-size:.85rem}.footer-inner{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 dialog{position:fixed;inset:0;margin:auto;width:min(660px,calc(100% - 2rem));max-height:calc(100% - 2rem);padding:0;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);overflow:auto;box-shadow:0 20px 80px #0004}dialog::backdrop{background:#1c1917aa}.dialog-inner{position:relative;padding:clamp(1.2rem,5vw,2.35rem)}.close{position:absolute;top:1rem;right:1rem;border:1px solid var(--line);border-radius:50%;background:var(--paper);width:42px;height:42px;display:grid;place-items:center}.close:hover{color:var(--accent);border-color:var(--accent)}.dialog-meta{color:var(--accent);font-size:.85rem;font-weight:700;margin-right:3rem}.dialog-title{font-size:clamp(1.55rem,4vw,2.25rem);margin:.5rem 2rem 1rem 0}.story p+p{margin-top:.8rem}.dialog-inner h3{margin:1.4rem 0 .45rem;font-size:1.2rem}.recommendations{padding-left:1.3rem;list-style:disc;margin:0 0 1rem;color:var(--muted)}.map-link{display:inline-flex;align-items:center;gap:.55rem;padding:.55rem .8rem;background:var(--accent);color:#fff;border-radius:5px;text-decoration:none;font-size:.875rem;font-weight:700}.map-link:hover{background:#7c2d12}.source-link{display:block;width:fit-content;margin-top:.85rem;color:var(--muted);font-size:.85rem;text-decoration:underline}.scroll-lock{overflow:hidden}
-@media(max-width:700px){.wrap{width:calc(100% - 2rem)}.nav{min-height:60px}.hero{grid-template-columns:1fr;gap:1.65rem;padding-block:2.35rem 2rem}.hero-photo{aspect-ratio:1.8}.guide{padding-top:1.55rem}.hero h1{margin-top:.5rem}.search{margin-top:1.2rem}}
+@media(max-width:700px){.wrap{width:calc(100% - 2rem)}.guide{padding-top:1.55rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 .pink-bakery-image svg{width:100%;height:100%}
 .card:hover .pink-bakery-image svg{transform:scale(1.05)}
 </style>
 </head>
-<body id="top">
-<header class="top">
-  <div class="wrap nav">
-    <a href="#top" class="brand"><span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>გემოს რუკა</a>
-    <a href="#guide" class="nav-link">ადგილების გზამკვლევი</a>
-  </div>
-</header>
+<body>
 <main class="wrap">
-  <section class="hero" aria-labelledby="hero-title">
-    <div>
-      <div class="eyebrow">ქართული გასტრონომიული გზამკვლევი</div>
-      <h1 id="hero-title">გემოს რუკა</h1>
-      <p>თბილისის ეზოებიდან ქუთაისის დუქნებამდე — აღმოაჩინე ქართული სუფრის გამორჩეული კერძები და ადგილების ამბები.</p>
-      <label class="search">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4 4"/></svg>
-        <input id="search" type="search" maxlength="150" aria-label="მოძებნე სახელით, ქალაქით ან კერძით" placeholder="სახელი, ქალაქი ან კერძი…">
-      </label>
-    </div>
-    <figure class="hero-photo">
-      <img src="https://images.unsplash.com/photo-1516211697506-8360dbcfe9a4?auto=format&amp;fit=crop&amp;w=1500&amp;q=85" alt="სუფრაზე გაშლილი კერძები" width="1500" height="910" fetchpriority="high">
-      <figcaption>საილუსტრაციო ფოტო · Unsplash</figcaption>
-    </figure>
-  </section>
   <section class="guide" id="guide" aria-labelledby="guide-title">
-    <div class="section-head"><h2 id="guide-title">სად მივიდეთ</h2><p id="count" class="count" role="status"></p></div>
+    <div class="section-head"><h1 id="guide-title">სად მივიდეთ</h1><p id="count" class="count" role="status"></p></div>
     <div id="filters" class="filters" role="group" aria-label="ადგილის კატეგორია"></div>
     <div id="cards" class="cards grid-cols-1 md:grid-cols-2 lg:grid-cols-3"></div>
-    <p id="empty" class="empty" hidden>შესაბამისი ადგილი ვერ მოიძებნა. სცადე სხვა სიტყვა ან კატეგორია.</p>
+    <p id="empty" class="empty" hidden>ამ კატეგორიაში ადგილები ვერ მოიძებნა.</p>
     <noscript><p class="empty">გზამკვლევის სანახავად ჩართე JavaScript.</p></noscript>
   </section>
 </main>
@@ -281,8 +258,6 @@ const make = (tag, className, content) => {
   if (content) node.textContent = content;
   return node;
 };
-const normalize = (value) => value.normalize('NFKC').toLocaleLowerCase('ka').replace(/[\p{P}\p{S}]/gu, ' ').trim();
-const search = byId('search');
 const grid = byId('cards');
 const filters = byId('filters');
 const dialog = byId('details');
@@ -290,12 +265,6 @@ const preferredCategories = ['თბილისი', 'რეგიონებ�
 const categories = ['ყველა', ...new Set([...preferredCategories, ...locationsData.map(({ category }) => category)])];
 let activeCategory = 'ყველა';
 let lastCard;
-
-const entries = locationsData.map((location) => ({
-  location,
-  searchable: normalize([location.name, location.city, location.dish, location.aliases, ...location.dishes,
-    ...(location.branches ?? []).map(({ district, address }) => district + ' ' + address)].join(' '))
-}));
 
 function openStory(location, card) {
   lastCard = card;
@@ -384,11 +353,8 @@ function createCard(location) {
 }
 
 function render() {
-  const words = normalize(search.value).split(/\s+/).filter(Boolean);
-  const matches = entries.filter(({ location, searchable }) =>
-    (activeCategory === 'ყველა' || activeCategory === location.category) &&
-    words.every((word) => searchable.includes(word)));
-  grid.replaceChildren(...matches.map(({ location }) => createCard(location)));
+  const matches = locationsData.filter(({ category }) => activeCategory === 'ყველა' || activeCategory === category);
+  grid.replaceChildren(...matches.map(createCard));
   byId('count').textContent = matches.length + ' ადგილი';
   byId('empty').hidden = matches.length > 0;
 }
@@ -405,7 +371,6 @@ for (const category of categories) {
   });
   filters.append(pill);
 }
-search.addEventListener('input', render);
 dialog.querySelector('.close').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', (event) => {
   if (event.target !== dialog) return;
