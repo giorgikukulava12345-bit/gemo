@@ -50,13 +50,15 @@ dialog{position:fixed;inset:0;margin:auto;width:min(660px,calc(100% - 2rem));max
       <p id="branch-note" class="mb-4 text-sm text-stone-600"></p>
     </section>
     <a class="map-link" id="detail-map" target="_blank" rel="noopener noreferrer">Google Maps-ზე ნახვა</a>
+    <a class="source-link" id="detail-menu" target="_blank" rel="noopener noreferrer" hidden>მენიუს ნახვა</a>
     <a class="source-link" id="detail-source" target="_blank" rel="noopener noreferrer" hidden>წყარო</a>
   </div>
 </dialog>
 <script>
 /*
  * ახალი ადგილის დამატება: დააკოპირე ქვემოთ მოცემული ობიექტის სტრუქტურა
- * და მასივში ჩაამატე მძიმით გამოყოფილი ჩანაწერი. კატეგორიის ახალი
+ * და მასივში ჩაამატე მძიმით გამოყოფილი ჩანაწერი. მენიუს ბმულისთვის გამოიყენე menuUrl.
+ * კატეგორიის ახალი
  * მნიშვნელობა ავტომატურად გამოჩნდება ფილტრებში. source არასავალდებულოა.
  * { name: 'სახელი', city: 'ქალაქი (რეგიონი)', category: 'კატეგორია',
  *   dish: 'გამორჩეული კერძი', teaser: 'მოკლე აღწერა',
@@ -68,6 +70,7 @@ dialog{position:fixed;inset:0;margin:auto;width:min(660px,calc(100% - 2rem));max
 const locationsData = [
   {
     name: 'რესტორანი „სადგური / Bahnhof Station“', city: 'ასურეთი (ქვემო ქართლი)', category: 'რეგიონები',
+    menuUrl: 'https://bahnhofstation.kovzy.com/?lang=1',
     dish: 'შემწვარი ხორცი და ჩამოსასხმელი ლუდი',
     teaser: 'გერმანული და ქართული სუფრის შეხვედრა ასურეთში, ყოფილ ელიზაბეტთალში.',
     story: [
@@ -81,6 +84,7 @@ const locationsData = [
   },
   {
     name: 'რესტორანი „დაფნა“', city: 'თბილისი', category: 'თბილისი',
+    menuUrl: 'https://www.georestaurants.com/en/restaurants/cafe-daphna/menu',
     dish: 'ქალაქური ხინკალი',
     teaser: 'ქალაქური ხინკალი ათონელის ქუჩაზე, სადა და თანამედროვე გარემოში.',
     story: [
@@ -94,6 +98,7 @@ const locationsData = [
   },
   {
     name: '„პური გულიანი“', city: 'თბილისი', category: 'ცომეული',
+    menuUrl: 'https://puriguliani.ge/?page=menu',
     dish: 'აჭარული ხაჭაპური და ქართული პური',
     teaser: 'საუზმე მტკვრის პირას აჭარული ხაჭაპურითა და ქართული პურით.',
     story: [
@@ -107,6 +112,7 @@ const locationsData = [
   },
   {
     name: 'თევზის ფერმა გორში', city: 'გორი (შიდა ქართლი)', category: 'რეგიონები',
+    menuUrl: 'https://fishhouse.ofoodo.com/',
     dish: 'ადგილზე მომზადებული კალმახი და ზუთხი',
     teaser: 'გორის თევზის ფერმა, სადაც კალმახსა და ზუთხს ადგილზე ამზადებენ.',
     story: [
@@ -114,7 +120,7 @@ const locationsData = [
       'კალმახი ნაზი ხორცით გამოირჩევა, ზუთხს კი უფრო მკვრივი ტექსტურა აქვს.'
     ],
     dishes: ["კალმახი","ზუთხი"],
-    image: 'photo-1510130387422-82bed34b37e9', maps: 'თევზის ფერმა გორი საქართველო', aliases: 'Gori Shida Kartli fish farm trout sturgeon'
+    image: 'photo-1510130387422-82bed34b37e9', mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Fish+House+Gori&query_place_id=ChIJ3-qb1nGZREARW7sgtxLN2J8', aliases: 'Gori Shida Kartli fish farm trout sturgeon'
   },
   {
     name: '„ძმობის დუქანი“', city: 'გორი (შიდა ქართლი)', category: 'დუქანი / ტრადიციული',
@@ -129,6 +135,7 @@ const locationsData = [
   },
   {
     name: 'რესტორანი „დები“', city: 'ქუთაისი (იმერეთი)', category: 'რეგიონები',
+    menuUrl: 'https://eeur-cdn.speisekarte.menu/storage/media/companies_menu_pdf/77972308/debi-sisters-kutaisi-menu.pdf',
     dish: 'იმერული ხაჭაპური და ფხალის ასორტი',
     teaser: 'იმერული ოჯახური სუფრის გემო ქუთაისში, თხელი ხაჭაპურითა და ნიგვზიანი ფხალით.',
     story: [
@@ -140,6 +147,7 @@ const locationsData = [
   },
   {
     name: '„ბიკენტიას საქაბაბე“', city: 'ქუთაისი (იმერეთი)', category: 'ლეგენდარული ადგილები',
+    menuUrl: 'https://restaurantguru.com/Bikentias-Kebabery-Kutaisi/menu',
     dish: 'ქუთაისური ქაბაბი პომიდორ-ნივრის საწებლით',
     teaser: 'ქაბაბი, პური და ცხარე საწებელი — ქუთაისის რამდენიმე თაობის სადილის ჩვევა.',
     story: [
@@ -152,6 +160,7 @@ const locationsData = [
   },
   {
     name: '„სტელა არტუა“ (Stella Artois Tbilisi)', city: 'თბილისი', category: 'თბილისი',
+    menuUrl: 'https://restaurantguru.com/Stella-Artois-Tbilisi/menu',
     dish: 'ხინკალი',
     teaser: 'თბილისური ლუდის პაბი ხინკლითა და ზღვის პროდუქტებით.',
     story: [
@@ -208,6 +217,7 @@ const locationsData = [
   },
   {
     name: '„მაკშაურმა“ (MacShaurma)', city: 'თბილისი', category: 'თბილისი',
+    menuUrl: 'https://wolt.com/ka/geo/tbilisi/restaurant/macshaurma',
     dish: 'შაურმა',
     teaser: 'მაკშაურმის ფილიალები გლდანში, ვარკეთილსა და საბურთალოზე.',
     story: [],
@@ -238,6 +248,7 @@ const locationsData = [
   },
   {
     name: '„სუფრა სოლოლაკში“ (Supra Sololakshi)', city: 'თბილისი', category: 'თბილისი',
+    menuUrl: 'https://wolt.com/ka/geo/tbilisi/restaurant/supra-sololakshi',
     dish: 'ხინკალი და საქონლის ნეკნები',
     teaser: 'ქართული რესტორანი სოლოლაკში, ამაღლების ქუჩაზე.',
     story: [
@@ -300,6 +311,10 @@ function openStory(location, card) {
   if (map.hidden) map.removeAttribute('href');
   else map.href = location.mapsUrl ?? ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(location.maps));
   const source = byId('detail-source');
+  const menu = byId('detail-menu');
+  menu.hidden = !location.menuUrl;
+  if (location.menuUrl) menu.href = location.menuUrl;
+  else menu.removeAttribute('href');
   source.hidden = !location.source;
   if (location.source) source.href = location.source;
   else source.removeAttribute('href');
