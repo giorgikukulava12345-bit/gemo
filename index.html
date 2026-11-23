@@ -16,9 +16,24 @@
 .wrap{width:min(1180px,calc(100% - 3rem));margin-inline:auto}
 .guide{padding-block:2rem 4rem}.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:.7rem;margin-bottom:1.25rem}.section-head h1{font-size:clamp(1.6rem,3.3vw,2.2rem);font-weight:700}.count{font-size:.85rem;color:var(--muted);white-space:nowrap}.filters{display:flex;gap:.55rem;flex-wrap:wrap;margin-bottom:1.5rem}.pill{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:.45rem .95rem;font-size:.875rem}.pill:hover{border-color:var(--accent);color:var(--accent)}.pill[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
 .cards{display:grid;gap:1.25rem}@media(min-width:768px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(min-width:1024px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}.card{display:flex;flex-direction:column;width:100%;height:100%;border:1px solid var(--line);background:#fff;text-align:left;color:inherit;padding:0;border-radius:8px;overflow:hidden;transition:box-shadow .3s,transform .3s}.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px #30201215}.card-image{display:block;position:relative;width:100%;aspect-ratio:1.85;overflow:hidden;background:linear-gradient(145deg,#a37a60,#e0cbb4)}.card-image img{transition:transform .3s}.card:hover img{transform:scale(1.05)}.badge{position:absolute;left:.8rem;bottom:.75rem;background:var(--paper);border-radius:4px;padding:.23rem .55rem;font-size:.77rem;font-weight:600}.card-body{display:grid;gap:.65rem;padding:1.15rem 1.15rem 1.25rem}.card-title{font:700 1.27rem/1.45 var(--serif)}.dish{color:var(--accent);font-size:.875rem;font-weight:700;display:flex;align-items:center;gap:.45rem}.dish svg{width:1rem;height:1rem}.teaser{color:var(--muted);font-size:.92rem;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}.card.appear{animation:appear .3s ease both}@keyframes appear{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}.empty{padding:2rem;border:1px solid var(--line);text-align:center;color:var(--muted)}
-footer{border-top:1px solid var(--line);padding:1.5rem 0;color:var(--muted);font-size:.85rem}.footer-inner{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 dialog{position:fixed;inset:0;margin:auto;width:min(660px,calc(100% - 2rem));max-height:calc(100% - 2rem);padding:0;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);overflow:auto;box-shadow:0 20px 80px #0004}dialog::backdrop{background:#1c1917aa}.dialog-inner{position:relative;padding:clamp(1.2rem,5vw,2.35rem)}.close{position:absolute;top:1rem;right:1rem;border:1px solid var(--line);border-radius:50%;background:var(--paper);width:42px;height:42px;display:grid;place-items:center}.close:hover{color:var(--accent);border-color:var(--accent)}.dialog-meta{color:var(--accent);font-size:.85rem;font-weight:700;margin-right:3rem}.dialog-title{font-size:clamp(1.55rem,4vw,2.25rem);margin:.5rem 2rem 1rem 0}.story p+p{margin-top:.8rem}.dialog-inner h3{margin:1.4rem 0 .45rem;font-size:1.2rem}.recommendations{padding-left:1.3rem;list-style:disc;margin:0 0 1rem;color:var(--muted)}.map-link{display:inline-flex;align-items:center;gap:.55rem;padding:.55rem .8rem;background:var(--accent);color:#fff;border-radius:5px;text-decoration:none;font-size:.875rem;font-weight:700}.map-link:hover{background:#7c2d12}.source-link{display:block;width:fit-content;margin-top:.85rem;color:var(--muted);font-size:.85rem;text-decoration:underline}.scroll-lock{overflow:hidden}
-@media(max-width:700px){.wrap{width:calc(100% - 2rem)}.guide{padding-top:1.55rem}}
+.section-head{justify-content:flex-end;margin-bottom:.6rem}
+.cards>article,.card-body{min-width:0}
+.card-title,.dialog-title,.story,.recommendations{overflow-wrap:anywhere}
+.close,.pill,.map-link{min-height:44px}
+dialog{max-height:calc(100dvh - 2rem);overscroll-behavior:contain}
+@media(max-width:700px){
+  .wrap{width:calc(100% - 2rem)}
+  .guide{padding-block:1rem 2rem}
+  .filters,.cards{gap:.75rem}
+  .filters{margin-bottom:1rem}
+  .pill{padding:.4rem .72rem}
+  .card-body{padding:1rem;gap:.48rem}
+  .card-title{font-size:1.15rem}
+  dialog{width:calc(100% - 1rem);max-height:calc(100dvh - 1rem)}
+  .dialog-inner{padding:1rem}
+  .close{width:44px;top:.65rem;right:.65rem}
+}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 .pink-bakery-image svg{width:100%;height:100%}
 .card:hover .pink-bakery-image svg{transform:scale(1.05)}
@@ -26,15 +41,14 @@ dialog{position:fixed;inset:0;margin:auto;width:min(660px,calc(100% - 2rem));max
 </head>
 <body>
 <main class="wrap">
-  <section class="guide" id="guide" aria-labelledby="guide-title">
-    <div class="section-head"><h1 id="guide-title">სად მივიდეთ</h1><p id="count" class="count" role="status"></p></div>
+  <section class="guide" id="guide" aria-label="ადგილების გზამკვლევი">
+    <div class="section-head"><p id="count" class="count" role="status"></p></div>
     <div id="filters" class="filters" role="group" aria-label="ადგილის კატეგორია"></div>
     <div id="cards" class="cards grid-cols-1 md:grid-cols-2 lg:grid-cols-3"></div>
     <p id="empty" class="empty" hidden>ამ კატეგორიაში ადგილები ვერ მოიძებნა.</p>
     <noscript><p class="empty">გზამკვლევის სანახავად ჩართე JavaScript.</p></noscript>
   </section>
 </main>
-<footer><div class="wrap footer-inner"><span>გემოს რუკა · საქართველო</span><span>საილუსტრაციო ფოტოების წყარო · Unsplash</span></div></footer>
 <dialog id="details" aria-labelledby="detail-title">
   <div class="dialog-inner">
     <button type="button" class="close" aria-label="დახურვა" autofocus><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
@@ -113,6 +127,11 @@ const locationsData = [
   {
     name: 'თევზის ფერმა გორში', city: 'გორი (შიდა ქართლი)', category: 'რეგიონები',
     menuUrl: 'https://fishhouse.ofoodo.com/',
+    photos: [
+      { src: 'https://fishhouse.ge/wp-content/uploads/2023/03/240884043_3158214914419569_6282590432779828225_n.jpg', alt: 'გორის „თევზის სახლის“ ტერიტორია' }
+    ],
+    imagePosition: 'center',
+    source: 'https://fishhouse.ge/',
     dish: 'ადგილზე მომზადებული კალმახი და ზუთხი',
     teaser: 'გორის თევზის ფერმა, სადაც კალმახსა და ზუთხს ადგილზე ამზადებენ.',
     story: [
