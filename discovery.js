@@ -4,6 +4,11 @@
     'ქართული': ['georgian', 'ქართულ', 'ქართულის'],
     'ევროპული': ['european', 'ევროპულ'],
     'გერმანული': ['german', 'გერმანულ'],
+    'იტალიური': ['italian', 'იტალიურ'],
+    'იაპონური': ['japanese', 'იაპონურ'],
+    'აზიური': ['asian', 'აზიურ'],
+    'ავსტრიული': ['austrian', 'ავსტრიულ'],
+    'საკონდიტრო': ['bakery', 'confectionery', 'საკონდიტრო'],
     'სწრაფი კვება': ['fast food', 'street food', 'სწრაფი კვება'],
     'ხინკალი': ['khinkali', 'khinkal', 'ხინკალ'],
     'ხაჭაპური': ['khachapuri', 'khachapuri', 'ხაჭაპურ'],
@@ -11,10 +16,25 @@
     'ქაბაბი': ['kebab', 'ქაბაბ'],
     'შაურმა': ['shawarma', 'შაურმ'],
     'თევზი': ['fish', 'თევზ', 'კალმახ', 'ზუთხ'],
+    'პიცა': ['pizza', 'პიცა'],
+    'სუში': ['sushi', 'სუში', 'ფილადელფია'],
+    'დესერტი': ['dessert', 'დესერტ', 'დონატ', 'donut', 'cheesecake', 'ჩიზქეიქ'],
+    'სენდვიჩი': ['sandwich', 'სენდვიჩ'],
+    'ბურგერი': ['burger', 'ბურგერ', 'big tasty', 'big taste', 'ბიგ თეისთ'],
+    'ნიოკი': ['gnocchi', 'ნიოკი'],
+    'ღვინო': ['wine', 'ღვინო', 'ღვინის', 'მეღვინეობა'],
+    'ბადრიჯანი': ['eggplant', 'aubergine', 'ბადრიჯან'],
+    'პილმენი': ['pelmeni', 'პილმენი', 'პელმენი'],
+    'კანჭი': ['pork knuckle', 'კანჭ'],
+    'შნიცელი': ['schnitzel', 'შნიცელ'],
     'თბილისი': ['tbilisi', 'თბილის'],
     'ბათუმი': ['batumi', 'ბათუმ'],
     'ქუთაისი': ['kutaisi', 'ქუთაის'],
     'გორი': ['gori', 'გორში', 'გორი'],
+    'ზუგდიდი': ['zugdidi', 'ზუგდიდ'],
+    'სიღნაღი': ['sighnaghi', 'signagi', 'სიღნაღ'],
+    'კაჭრეთი': ['kachreti', 'კაჭრეთ'],
+    'მანავი': ['manavi', 'მანავ'],
     'ბორჯომის გზა': ['borjomi', 'akhaldaba', 'kvishkheti', 'ბორჯომ', 'ახალდაბ', 'ქვიშხეთ', 'ტაშისკარ']
   };
   function normalize(value) {
@@ -22,13 +42,13 @@
       .replace(/[\u2018-\u201f„“"'«»]/g, '').replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
   }
   function infer(location) {
-    const text = normalize([location.dish, ...(location.dishes || []), location.name].join(' '));
+    const text = normalize([location.dish, ...(location.dishes || []), location.name, location.aliases].join(' '));
     const cuisines = location.cuisines || (
       /შაურმა|გირო|პიტა/.test(text) ? ['სწრაფი კვება'] :
       /სადგური|bahnhof/.test(text) ? ['ქართული', 'გერმანული'] : ['ქართული']
     );
     const foods = Object.keys(vocabulary).filter(key =>
-      ['ხინკალი','ხაჭაპური','მწვადი','ქაბაბი','შაურმა','თევზი'].includes(key) && vocabulary[key].some(word => text.includes(word)));
+      ['ხინკალი','ხაჭაპური','მწვადი','ქაბაბი','შაურმა','თევზი','პიცა','სუში','დესერტი','სენდვიჩი','ბურგერი','ნიოკი','ღვინო','ბადრიჯანი','პილმენი','კანჭი','შნიცელი'].includes(key) && vocabulary[key].some(word => text.includes(word)));
     const city = location.city.split(' (')[0];
     const area = location.route || city;
     return {...location, cuisines, foods, area};

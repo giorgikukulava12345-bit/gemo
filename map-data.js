@@ -632,3 +632,455 @@ const verifiedMapData = {
     }
   }
 };
+
+// Additional audited listings
+Object.assign(verifiedMapData, {
+  "ვერიკო": {
+    "mapsUrl": "https://www.google.com/maps?cid=15007226784844969539",
+    "googleName": "Veriko",
+    "verifiedAddress": "1 Vasil Petriashvili Street, Tbilisi 0179",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 40,
+      "max": 100,
+      "average": 70,
+      "sampleCount": 67,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=15007226784844969539"
+    }
+  },
+  "ნაპოლი": {
+    "mapsUrl": "https://www.google.com/maps?cid=12300264970206319573",
+    "googleName": "Napoli",
+    "verifiedAddress": "N, 10 Marijani St, Tbilisi 0177",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 50,
+      "average": 35,
+      "sampleCount": 93,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=12300264970206319573"
+    }
+  },
+  "დოდონატი": {
+    "mapsUrl": "https://www.google.com/maps?cid=6862291220252351510",
+    "googleName": "Dodonut",
+    "verifiedAddress": "1a Ekvtime Takaishvili St, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 10,
+      "max": 20,
+      "average": 15,
+      "sampleCount": 43,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=6862291220252351510"
+    }
+  },
+  "სთორი": {
+    "mapsUrl": "https://www.google.com/maps?cid=15010857589406277060",
+    "googleName": "Story",
+    "verifiedAddress": "52 Tsereteli St, Kutaisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 60,
+      "average": 40,
+      "sampleCount": 128,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=15010857589406277060"
+    }
+  },
+  "გიუანი — მეღვინეობა": {
+    "mapsUrl": "https://www.google.com/maps?cid=15395330689192776466",
+    "googleName": "Giuaani Winery",
+    "verifiedAddress": "N10, Sagarejo Region, Village Manavi, 2nd lane, Manavi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": null
+  },
+  "ცეცხლი აინთო": {
+    "mapsUrl": "https://www.google.com/maps?cid=10391586750145009812",
+    "googleName": "ცეცხლი აინთო • Tsetskhli Ainto",
+    "verifiedAddress": "№10 Tashkenti St, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 30,
+      "average": 25,
+      "sampleCount": 44,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=10391586750145009812"
+    }
+  },
+  "სუში რუმი — აბაშიძე": {
+    "mapsUrl": "https://www.google.com/maps?cid=11347935914495054901",
+    "googleName": "Sushi Room",
+    "verifiedAddress": "10/12 Irakli Abashidze Street, Tbilisi 0179",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 100,
+      "max": null,
+      "average": null,
+      "sampleCount": 97,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=11347935914495054901"
+    }
+  },
+  "მაკდონალდსი": {
+    "mapsUrl": "https://www.google.com/maps?cid=14393720663699547026",
+    "googleName": "McDonald's",
+    "verifiedAddress": "2/4 Shota Rustaveli Ave, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 30,
+      "average": 25,
+      "sampleCount": 86,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=14393720663699547026"
+    }
+  },
+  "ლოლიტა": {
+    "mapsUrl": "https://www.google.com/maps?cid=10161991376116800545",
+    "googleName": "Lolita",
+    "verifiedAddress": "7 Tamar Chovelidze St, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 70,
+      "average": 45,
+      "sampleCount": 272,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=10161991376116800545"
+    }
+  },
+  "Cin Cin": {
+    "mapsUrl": "https://www.google.com/maps?cid=13749157158642049209",
+    "googleName": "Cin Cin",
+    "verifiedAddress": "107 Dimitri Uznadze St, Tbilisi 0102",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 30,
+      "max": 80,
+      "average": 55,
+      "sampleCount": 35,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=13749157158642049209"
+    }
+  },
+  "ღუმელი": {
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Ghumeli&query_place_id=ChIJZeUqu8ANREARpdO3c49oPJU",
+    "googleName": "Ghumeli",
+    "verifiedAddress": "10 Mikheil Lermontovi St, Tbilisi 0105",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 40,
+      "max": 80,
+      "average": 60,
+      "sampleCount": 22,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps/search/?api=1&query=Ghumeli&query_place_id=ChIJZeUqu8ANREARpdO3c49oPJU"
+    }
+  },
+  "AMO": {
+    "mapsUrl": "https://www.google.com/maps?cid=2398445331088450110",
+    "googleName": "AMO",
+    "verifiedAddress": "27 Polikarpe Kakabadze St, Tbilisi 0105",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": null
+  },
+  "Grilisi City View Bar": {
+    "mapsUrl": "https://www.google.com/maps?cid=12022186582408898987",
+    "googleName": "Grilisi City View Bar",
+    "verifiedAddress": "Near upper Cable Car station Near Mother of Georgia, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 10,
+      "max": 50,
+      "average": 30,
+      "sampleCount": 30,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=12022186582408898987"
+    }
+  },
+  "დონა — საკონდიტრო": {
+    "mapsUrl": "https://www.google.com/maps?cid=15296244049012309643",
+    "googleName": "Dona bakeshop & Cafe",
+    "verifiedAddress": "121 Parnavaz Mepe St, Batumi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": null
+  },
+  "ბარბატუსი": {
+    "mapsUrl": "https://www.google.com/maps?cid=6369574090383199833",
+    "googleName": "ბარბატუსი - თევზისა და ზღვის პროდუქტების რესტორანი. Barbatus - Fish & Seafood Restaurant",
+    "verifiedAddress": "70 Merab Kostava St, Tbilisi 0171",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": null
+  },
+  "ავსტრიული ლუდსახარში": {
+    "mapsUrl": "https://www.google.com/maps?cid=17208173024744045327",
+    "googleName": "Austrian Brewery",
+    "verifiedAddress": "256 Davit Aghmashenebeli Ave, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 40,
+      "max": 100,
+      "average": 70,
+      "sampleCount": 33,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=17208173024744045327"
+    }
+  },
+  "დიარონი": {
+    "mapsUrl": "https://www.google.com/maps?cid=3988092209440229895",
+    "googleName": "Diaroni",
+    "verifiedAddress": "GV4F+Q84, ი. მეუნარგიას ქუჩა, Zugdidi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 70,
+      "average": 45,
+      "sampleCount": 177,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=3988092209440229895"
+    }
+  },
+  "სესილი — Cecilia": {
+    "mapsUrl": "https://www.google.com/maps?cid=599960002481974449",
+    "googleName": "Cecilia",
+    "verifiedAddress": "Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 80,
+      "average": 50,
+      "sampleCount": 61,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=599960002481974449"
+    }
+  },
+  "ოიში სუში — ყაზბეგი": {
+    "mapsUrl": "https://www.google.com/maps?cid=13416460784944705968",
+    "googleName": "Oishi Sushi",
+    "verifiedAddress": "37 Alexander Kazbegi Ave, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 80,
+      "average": 50,
+      "sampleCount": 220,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=13416460784944705968"
+    }
+  },
+  "კაჭრეთის ჩემპიონი": {
+    "mapsUrl": "https://www.google.com/maps?cid=2827816671472364806",
+    "googleName": "Kachreti champion",
+    "verifiedAddress": "S5, Kachreti",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 60,
+      "average": 40,
+      "sampleCount": 54,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=2827816671472364806"
+    }
+  },
+  "ლა ბურრატა": {
+    "mapsUrl": "https://www.google.com/maps?cid=2859090517840148045",
+    "googleName": "La Burrata",
+    "verifiedAddress": "4 პეტრე გამყრელიძის ქუჩა, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 60,
+      "average": 40,
+      "sampleCount": 64,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=2859090517840148045"
+    }
+  },
+  "კაფე 43": {
+    "mapsUrl": "https://www.google.com/maps?cid=7314840985233854686",
+    "googleName": "CAFE 43",
+    "verifiedAddress": "189 Davit Aghmashenebeli Ave, Tbilisi 0112",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": null
+  },
+  "მოვა მაისი": {
+    "mapsUrl": "https://www.google.com/maps?cid=5054815067200466363",
+    "googleName": "Mova Maisi • მოვა მაისი",
+    "verifiedAddress": "9 Mikheil Zandukeli Dead End, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 30,
+      "max": 90,
+      "average": 60,
+      "sampleCount": 96,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=5054815067200466363"
+    }
+  },
+  "ბერნარდი — ტაბიძე": {
+    "mapsUrl": "https://www.google.com/maps?cid=1711978014914149670",
+    "googleName": "Bernard",
+    "verifiedAddress": "3/5 Galaktion Tabidze St, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 80,
+      "average": 50,
+      "sampleCount": 230,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=1711978014914149670"
+    }
+  },
+  "გასტრონომია გავაშელი": {
+    "mapsUrl": "https://www.google.com/maps?cid=79423244894347018",
+    "googleName": "გასტრონომია გავაშელი Gastronomy Gavasheli",
+    "verifiedAddress": "121 Tianeti St, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 30,
+      "average": 25,
+      "sampleCount": 100,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=79423244894347018"
+    }
+  },
+  "ბანკოკი — აწყური": {
+    "mapsUrl": "https://www.google.com/maps?cid=5895909973601668971",
+    "googleName": "BANGKOK TBILISI",
+    "verifiedAddress": "45/47 Atskuri St, Tbilisi 0144",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 60,
+      "average": 40,
+      "sampleCount": 6,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=5895909973601668971"
+    }
+  },
+  "ცაზე": {
+    "mapsUrl": "https://www.google.com/maps?cid=16107222634137686713",
+    "googleName": "Tsaze • ცაზე",
+    "verifiedAddress": "21 Konstantine Eristavi St, Tbilisi 0192",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": null
+  },
+  "ღვინის ქარხანა N1": {
+    "mapsUrl": "https://www.google.com/maps?cid=5506279675795097678",
+    "googleName": "Wine Factory N1",
+    "verifiedAddress": "1 Vasil Petriashvili Street, Tbilisi 0179",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": null
+  },
+  "8000 მოსავალი": {
+    "mapsUrl": "https://www.google.com/maps?cid=9461529170122753886",
+    "googleName": "8000 Vintages",
+    "verifiedAddress": "26 Sulkhan Tsintsadze St, Tbilisi 0160",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 30,
+      "max": 90,
+      "average": 60,
+      "sampleCount": 62,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=9461529170122753886"
+    }
+  },
+  "ჩემთან — ავლაბარი": {
+    "mapsUrl": "https://www.google.com/maps?cid=4685768745430123655",
+    "googleName": "restaurant chemtan/ჩემთან",
+    "verifiedAddress": "22 Metekhi St, Tbilisi 0144",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": null
+  },
+  "მაჟორელის ლურჯი": {
+    "mapsUrl": "https://www.google.com/maps?cid=6355347670228120622",
+    "googleName": "მაჟორელის ლურჯი | Majorelle Blue",
+    "verifiedAddress": "QQGX+5JR, სადმელის ქუჩა, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 60,
+      "average": 40,
+      "sampleCount": 23,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=6355347670228120622"
+    }
+  },
+  "ზალა": {
+    "mapsUrl": "https://www.google.com/maps?cid=7432527027502225385",
+    "googleName": "Zala Restaurant & Cellar",
+    "verifiedAddress": "2 Belinski St, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 100,
+      "max": null,
+      "average": null,
+      "sampleCount": 174,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=7432527027502225385"
+    }
+  },
+  "კაბადონი": {
+    "mapsUrl": "https://www.google.com/maps?cid=15425608152994037267",
+    "googleName": "Restaurant Kabadoni",
+    "verifiedAddress": "1 Lolashvili St, Sighnaghi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": null
+  },
+  "ეთნოგრაფი": {
+    "mapsUrl": "https://www.google.com/maps?cid=12441854585373301489",
+    "googleName": "Ethnographer restaurant",
+    "verifiedAddress": "T, 105 Akaki Beliashvili St, Tbilisi 0159",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 100,
+      "max": null,
+      "average": null,
+      "sampleCount": 643,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=12441854585373301489"
+    }
+  },
+  "ცეხი": {
+    "mapsUrl": "https://www.google.com/maps?cid=579132716785868756",
+    "googleName": "Zeche",
+    "verifiedAddress": "18 Queen Tamar Ave, Tbilisi 6010",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 30,
+      "max": 90,
+      "average": 60,
+      "sampleCount": 88,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=579132716785868756"
+    }
+  },
+  "წიწილა — კოსტავა": {
+    "mapsUrl": "https://www.google.com/maps?cid=17302388205155047392",
+    "googleName": "TSITSILA BISTRO",
+    "verifiedAddress": "76 Merab Kostava St, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 20,
+      "max": 30,
+      "average": 25,
+      "sampleCount": 33,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=17302388205155047392"
+    }
+  },
+  "ჩვენი — Chveni": {
+    "mapsUrl": "https://www.google.com/maps?cid=5017576453301982631",
+    "googleName": "Chveni",
+    "verifiedAddress": "8 Tchorokhi Street, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": null
+  }
+});

@@ -12,9 +12,9 @@ vm.runInContext(inline,context);
 const places=vm.runInContext('places',context);
 const find=state=>finder.find(places,state);
 
-test('all original places and 15 additions retain details and distinct branches',()=>{
-  assert.equal(places.length,40);
-  assert.equal(new Set(places.map(p=>p.name)).size,40);
+test('all 77 places retain details and distinct branches',()=>{
+  assert.equal(places.length,77);
+  assert.equal(new Set(places.map(p=>p.name)).size,77);
   assert.equal(places.filter(p=>p.name.includes('ჭაშნაგირი')).length,2);
   for(const place of places){assert.ok(Array.isArray(place.story));assert.ok(place.dishes.length);assert.ok(place.maps || place.mapsUrl || place.branches?.length);}
 });
@@ -51,14 +51,14 @@ test('budget sort puts unknown tiers last and clear state returns everything',()
   const sorted=find({sort:'budget'});
   assert.equal(sorted[0].budget,1);
   assert.equal(sorted.at(-1).budget,undefined);
-  assert.equal(find({query:'',category:'ყველა'}).length,40);
+  assert.equal(find({query:'',category:'ყველა'}).length,77);
   assert.equal(find({query:'no-such-restaurant-abc'}).length,0);
 });
 
-test('all 40 cards and all 47 branch pins use exact audited identifiers',()=>{
+test('all 77 cards and all 84 branch pins use exact audited identifiers',()=>{
   const pins=places.flatMap(p=>p.branches?.length?p.branches:[p]);
-  assert.equal(pins.length,47);
-  assert.equal(new Set(pins.map(p=>p.mapsUrl)).size,47);
+  assert.equal(pins.length,84);
+  assert.equal(new Set(pins.map(p=>p.mapsUrl)).size,84);
   for(const pin of pins){
     const url=new URL(pin.mapsUrl);
     assert.equal(url.hostname,'www.google.com');
@@ -69,7 +69,7 @@ test('all 40 cards and all 47 branch pins use exact audited identifiers',()=>{
 });
 test('per-person means are calculated solely from the exact Google range',()=>{
   const pins=places.flatMap(p=>p.branches?.length?p.branches:[p]);
-  assert.equal(pins.filter(p=>p.googlePrice).length,41);
+  assert.equal(pins.filter(p=>p.googlePrice).length,68);
   for(const pin of pins){
     const price=pin.googlePrice;
     if(!price)continue;
@@ -97,4 +97,27 @@ test('different branches retain individual maps and individual price estimates',
   assert.equal(tona.branches[0].googlePrice.average,50);
   assert.equal(tona.branches[1].googlePrice.average,60);
   assert.equal(finder.priceLabel(tona),'50–60 ₾ / ადამიანი');
+});
+
+test('new dishes and cuisines are discoverable in Georgian and English',()=>{
+  assert.ok(find({query:'pizza'}).some(p=>p.name==='ნაპოლი'));
+  assert.ok(find({cuisine:'იაპონური',food:'სუში'}).some(p=>p.name.includes('ოიში')));
+  assert.ok(find({query:'gnocchi'}).some(p=>p.name==='ლოლიტა'));
+  assert.ok(find({query:'დონატი'}).some(p=>p.name==='დოდონატი'));
+  assert.ok(find({query:'სენდვიჩი'}).some(p=>p.name.includes('წიწილა')));
+  assert.ok(find({area:'ზუგდიდი',food:'ქაბაბი'}).some(p=>p.name==='დიარონი'));
+});
+test('requested corrections retain one Cecilia and omit L Bakery',()=>{
+  assert.equal(places.filter(p=>p.aliases?.includes('Cecilia')).length,1);
+  assert.ok(!places.some(p=>/^l\s*bakery$/i.test(p.name)));
+  assert.equal(find({query:'Cin Cin'})[0].googlePrice.average,55);
+  assert.equal(find({query:'Chveni'})[0].phone,'593 76 77 13');
+  assert.ok(find({query:'წისქვილი',food:'ქაბაბი'}).length);
+});
+test('every card has a restaurant photo and local photo files exist',()=>{
+  for(const place of places){
+    const src=place.photos?.[0]?.src||place.imageSrc;
+    assert.ok(src,'No restaurant photo: '+place.name);
+    if(!/^(https?:|data:)/.test(src))assert.ok(fs.statSync(src).size>1000,'Missing photo: '+src);
+  }
 });

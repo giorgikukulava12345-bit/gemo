@@ -459,7 +459,7 @@ locationsData.push(...addedLocations);
 const places = locationsData.map(location => {
   const verified=verifiedMapData[location.name];
   if (!verified) throw new Error('Missing verified map: '+location.name);
-  const merged={...location,...verified};
+  const merged={...location,...verified,...(photoOverrides[location.name]?{imageSrc:photoOverrides[location.name]}:{})};
   if (location.branches) merged.branches=location.branches.map((branch,index)=>({...branch,...verified.branches[index]}));
   const inferred=TasteFinder.infer(merged);
   return {...inferred,budget:TasteFinder.budgetTier(TasteFinder.priceSummary(inferred))};
@@ -484,10 +484,10 @@ let lastCard;
 function openStory(location, card) {
   lastCard = card;
   byId('detail-title').textContent = location.name;
-  byId('detail-meta').textContent = location.city + ' · ' + location.category;
-  byId('detail-address').textContent = location.verifiedAddress || (location.branches?.length ? 'აირჩიე კონკრეტული ფილიალი ქვემოთ.' : '');
+  byId('detail-meta').textContent = location.city + (location.city===location.category?'':' · ' + location.category);
+  byId('detail-address').textContent = location.address || location.verifiedAddress || (location.branches?.length ? 'აირჩიე კონკრეტული ფილიალი ქვემოთ.' : '');
   const photoPanel = byId('detail-photos');
-  const photos = location.photos ?? [];
+  const photos = location.photos ?? (location.imageSrc ? [{src:location.imageSrc,alt:location.name}] : []);
   photoPanel.replaceChildren(...photos.map(({ src, alt }) => {
     const photo = make('img', 'rounded-md');
     photo.style.height = 'auto';
