@@ -118,7 +118,13 @@
     const summary=priceSummary(location);
     return summary ? summary.minAverage ?? summary.min : Infinity;
   }
-  const api = {normalize,infer,parseQuery,find,priceSummary,budgetTier,priceLabel,priceSortValue};
+  function phoneLabel(phone) {
+    const digits=String(phone).replace(/^\+995/,'');
+    if(digits.startsWith('32'))return '032 '+digits.slice(2,5)+' '+digits.slice(5,7)+' '+digits.slice(7);
+    const prefix=digits.startsWith('5')?digits.slice(0,3):'0'+digits.slice(0,3);
+    return prefix+' '+digits.slice(3,5)+' '+digits.slice(5,7)+' '+digits.slice(7);
+  }
+  const api = {normalize,infer,parseQuery,find,priceSummary,budgetTier,priceLabel,priceSortValue,phoneLabel};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.TasteFinder = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

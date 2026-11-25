@@ -52,6 +52,12 @@ dialog{max-height:calc(100dvh - 2rem);overscroll-behavior:contain}
   .count{white-space:normal}
 }
 @media(max-width:360px){.wrap{width:calc(100% - 1.25rem)}.finder{padding:.8rem}.finder select{padding-left:.6rem;padding-right:1.8rem}}
+.card-main{display:flex;flex-direction:column;align-items:stretch;flex:1;min-width:0;width:100%;border:0;background:transparent;text-align:left;color:inherit;padding:0;cursor:pointer}
+.card-image{flex-shrink:0}.card:focus-within{outline:2px solid var(--accent);outline-offset:3px}
+.card-contact{display:grid;gap:.6rem;padding:0 1.15rem 1rem}.phone-group{display:grid;gap:.2rem;min-width:0}.phone-branch{color:var(--muted);font-size:.8rem;overflow-wrap:anywhere}
+.phone-link{display:inline-flex;align-items:center;gap:.45rem;min-height:44px;width:fit-content;max-width:100%;padding:.4rem .65rem;border:1px solid var(--line);border-radius:6px;color:var(--accent);background:var(--paper);text-decoration:none;font-size:.9rem;font-weight:600;flex-wrap:wrap}
+.phone-link:hover{border-color:var(--accent);background:#fff7ed}.phone-number{white-space:nowrap;font-variant-numeric:tabular-nums}.detail-contact{margin:.65rem 0 1rem}
+@media(max-width:700px){.card-contact{padding:0 1rem 1rem}}
 </style>
 </head>
 <body>
@@ -90,6 +96,7 @@ dialog{max-height:calc(100dvh - 2rem);overscroll-behavior:contain}
     <p class="dialog-meta" id="detail-meta"></p>
     <h2 class="dialog-title" id="detail-title"></h2>
     <p id="detail-address" class="finder-note"></p>
+    <div id="detail-phone" class="detail-contact" hidden></div>
     <div id="detail-photos" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4" hidden></div>
     <div class="story" id="detail-story"></div>
     <div id="detail-budget" class="budget-detail"></div>
@@ -107,6 +114,7 @@ dialog{max-height:calc(100dvh - 2rem);overscroll-behavior:contain}
 <script src="places.js"></script>
 <script src="discovery.js"></script>
 <script src="map-data.js"></script>
+<script src="contacts.js"></script>
 <script>
 /*
  * ახალი ადგილის დამატება: დააკოპირე ქვემოთ მოცემული ობიექტის სტრუქტურა
@@ -472,8 +480,8 @@ locationsData.push(...addedLocations);
 const places = locationsData.map(location => {
   const verified=verifiedMapData[location.name];
   if (!verified) throw new Error('Missing verified map: '+location.name);
-  const merged={...location,...verified,...(photoOverrides[location.name]?{imageSrc:photoOverrides[location.name]}:{})};
-  if (location.branches) merged.branches=location.branches.map((branch,index)=>({...branch,...verified.branches[index]}));
+  const merged={...location,...verified,...contactByMap[verified.mapsUrl],...(photoOverrides[location.name]?{imageSrc:photoOverrides[location.name]}:{})};
+  if (location.branches) merged.branches=location.branches.map((branch,index)=>({...branch,...verified.branches[index],...contactByMap[verified.branches[index].mapsUrl]}));
   const inferred=TasteFinder.infer(merged);
   return {...inferred,budget:TasteFinder.budgetTier(TasteFinder.priceSummary(inferred))};
 });
@@ -494,11 +502,22 @@ let activeCategory = 'ყველა';
 let state = {query:'',area:'',cuisine:'',food:'',budget:'',sort:'match'};
 let lastCard;
 
+function makePhoneLink(phone,name) {
+  const link=make('a','phone-link');
+  link.href='tel:'+phone;
+  link.setAttribute('aria-label','დარეკვა: '+name+' — '+TasteFinder.phoneLabel(phone));
+  link.append(make('span','','დარეკვა'),make('span','phone-number',TasteFinder.phoneLabel(phone)));
+  return link;
+}
 function openStory(location, card) {
   lastCard = card;
   byId('detail-title').textContent = location.name;
   byId('detail-meta').textContent = location.city + (location.city===location.category?'':' · ' + location.category);
   byId('detail-address').textContent = location.address || location.verifiedAddress || (location.branches?.length ? 'აირჩიე კონკრეტული ფილიალი ქვემოთ.' : '');
+  const contact=byId('detail-phone');
+  contact.replaceChildren();
+  contact.hidden=!location.phone || !!location.branches?.length;
+  if(!contact.hidden)contact.append(makePhoneLink(location.phone,location.name));
   const photoPanel = byId('detail-photos');
   const photos = location.photos ?? (location.imageSrc ? [{src:location.imageSrc,alt:location.name}] : []);
   photoPanel.replaceChildren(...photos.map(({ src, alt }) => {
@@ -525,6 +544,7 @@ function openStory(location, card) {
     link.rel = 'noopener noreferrer';
     item.append(link);
     item.append(make('p','',TasteFinder.priceLabel(branch)));
+    if(branch.phone)item.append(makePhoneLink(branch.phone,location.name+' · '+district));
     return item;
   }));
   byId('branch-note').textContent = location.branchNote ?? '';
@@ -543,7 +563,8 @@ function openStory(location, card) {
 
 function createCard(location) {
   const article = make('article');
-  const button = make('button', 'card transition-all duration-300 appear');
+  article.className='card transition-all duration-300 appear';
+  const button = make('button', 'card-main');
   button.type = 'button';
   button.setAttribute('aria-haspopup', 'dialog');
   button.setAttribute('aria-label', location.name + ' — ამბის წაკითხვა');
@@ -591,6 +612,20 @@ function createCard(location) {
   button.append(media, body);
   button.addEventListener('click', () => openStory(location, button));
   article.append(button);
+  const calls=make('div','card-contact');
+  const numbers=new Map();
+  for(const entry of location.branches?.length?location.branches:[location]){
+    if(!entry.phone)continue;
+    if(!numbers.has(entry.phone))numbers.set(entry.phone,[]);
+    if(entry.district)numbers.get(entry.phone).push(entry.district);
+  }
+  for(const [phone,districts] of numbers){
+    const group=make('div','phone-group');
+    if(districts.length)group.append(make('span','phone-branch',districts.join(' · ')));
+    group.append(makePhoneLink(phone,location.name+(districts.length?' · '+districts.join(', '):'')));
+    calls.append(group);
+  }
+  if(numbers.size)article.append(calls);
   return article;
 }
 

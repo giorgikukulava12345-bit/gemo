@@ -6,6 +6,7 @@ const finder = require('./discovery.js');
 const context = vm.createContext({TasteFinder:finder});
 vm.runInContext(fs.readFileSync('places.js','utf8'),context);
 vm.runInContext(fs.readFileSync('map-data.js','utf8'),context);
+vm.runInContext(fs.readFileSync('contacts.js','utf8'),context);
 const html=fs.readFileSync('index.html','utf8');
 const inline=html.slice(html.indexOf('const locationsData = ['),html.indexOf('const byId ='));
 vm.runInContext(inline,context);
@@ -111,7 +112,7 @@ test('requested corrections retain one Cecilia and omit L Bakery',()=>{
   assert.equal(places.filter(p=>p.aliases?.includes('Cecilia')).length,1);
   assert.ok(!places.some(p=>/^l\s*bakery$/i.test(p.name)));
   assert.equal(find({query:'Cin Cin'})[0].googlePrice.average,55);
-  assert.equal(find({query:'Chveni'})[0].phone,'593 76 77 13');
+  assert.equal(find({query:'Chveni'})[0].phone,'+995593767713');
   assert.ok(find({query:'წისქვილი',food:'ქაბაბი'}).length);
 });
 test('every card has a restaurant photo and local photo files exist',()=>{
@@ -120,4 +121,15 @@ test('every card has a restaurant photo and local photo files exist',()=>{
     assert.ok(src,'No restaurant photo: '+place.name);
     if(!/^(https?:|data:)/.test(src))assert.ok(fs.statSync(src).size>1000,'Missing photo: '+src);
   }
+});
+test('all 84 exact branch listings have sourced international dialing numbers',()=>{
+  const pins=places.flatMap(p=>p.branches?.length?p.branches:[p]);
+  assert.equal(pins.length,84);
+  for(const pin of pins){assert.match(pin.phone,/^\+995\d{9}$/);assert.ok(pin.phoneSource.startsWith('https://'));assert.equal(pin.phoneCheckedAt,'2026-11-25');}
+  assert.equal(find({query:'Chveni'})[0].phone,'+995593767713');
+  const zodiac=find({query:'Zodiaqo'})[0];
+  assert.equal(zodiac.branches[0].phone,'+995599580077');
+  assert.equal(zodiac.branches[1].phone,'+995551272241');
+  assert.equal(finder.phoneLabel('+995593767713'),'593 76 77 13');
+  assert.equal(finder.phoneLabel('+995322185253'),'032 218 52 53');
 });
