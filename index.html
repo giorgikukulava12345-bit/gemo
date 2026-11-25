@@ -37,15 +37,37 @@ dialog{max-height:calc(100dvh - 2rem);overscroll-behavior:contain}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 .pink-bakery-image svg{width:100%;height:100%}
 .card:hover .pink-bakery-image svg{transform:scale(1.05)}
+.finder{border:1px solid var(--line);border-radius:10px;background:#fff;padding:1.3rem;margin-bottom:1.5rem}.finder h1{font-size:clamp(1.5rem,4vw,2rem);margin-bottom:.45rem}.finder-intro{color:var(--muted);margin-bottom:1.2rem}.search-label{display:block;font-weight:600;margin-bottom:.35rem}.search-box{position:relative}.search-box input{width:100%;min-height:50px;padding:.7rem 1rem;border:1px solid #c7c2be;border-radius:7px;background:var(--paper);font-size:1rem}.finder-fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem;margin:1rem 0}.finder-fields label{display:grid;gap:.35rem;font-size:.875rem;font-weight:600}.finder select,.results-toolbar select{width:100%;min-height:46px;border:1px solid #c7c2be;border-radius:6px;background:var(--paper);padding:.55rem 2rem .55rem .65rem;font:inherit;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 20 20'%3E%3Cpath d='m5 7 5 5 5-5' fill='none' stroke='%2357534e' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .65rem center}.quick-picks{display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0}.finder-footer{display:flex;justify-content:space-between;align-items:center;gap:1rem}.finder-note,.match-note{color:var(--muted);font-size:.875rem}.reset{color:var(--accent);border:0;background:transparent;text-decoration:underline;min-height:44px;padding:.35rem;white-space:nowrap}.results-toolbar{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1rem}.results-toolbar label{display:flex;align-items:center;gap:.5rem;font-size:.875rem}.results-toolbar select{width:auto}.count{font-size:.875rem}.card-tags{display:flex;flex-wrap:wrap;gap:.35rem}.card-tag{font-size:.8rem;border:1px solid var(--line);padding:.15rem .5rem;border-radius:999px;color:var(--muted)}.match-note{margin-bottom:1rem}.card-cover{display:flex;flex-direction:column;justify-content:center;padding:1.5rem;background:#eee8e0;color:#6f301b;gap:.35rem}.card-cover strong{font:600 1.65rem/1.5 var(--serif);max-width:95%}.card-cover small{font-size:.875rem}.card-cover .badge{color:var(--ink)}.budget-detail{margin:1rem 0;padding:.8rem;border:1px solid var(--line);border-radius:6px;font-size:.875rem}.empty .reset{display:block;margin:.5rem auto 0}select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:800px){.finder-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.finder{padding:1rem}.finder-footer{align-items:flex-start}.results-toolbar{flex-wrap:wrap}}@media(max-width:420px){.finder-footer{flex-direction:column;gap:.2rem}.search-box input{padding:.7rem}.results-toolbar label{width:100%}.results-toolbar select{flex:1}}
 </style>
 </head>
 <body>
 <main class="wrap">
   <section class="guide" id="guide" aria-label="ადგილების გზამკვლევი">
-    <div class="section-head"><p id="count" class="count" role="status"></p></div>
+    <section class="finder" aria-labelledby="finder-title">
+      <h1 id="finder-title">რას მიირთმევდი?</h1>
+      <p class="finder-intro">აირჩიე გემო, ადგილი და ბიუჯეტი — იპოვე შენი შემდეგი გაჩერება.</p>
+      <label class="search-label" for="search">მოძებნე ადგილი ან კერძი</label>
+      <div class="search-box"><input id="search" type="search" placeholder="მაგ.: ხინკალი ქუთაისში · Georgian budget" autocomplete="off" aria-describedby="search-help"></div>
+      <p id="search-help" class="finder-note">ძიება მუშაობს ქართულად და ინგლისურად. შეგიძლია უბრალოდ ქვემოთ აირჩიო.</p>
+      <div class="quick-picks" role="group" aria-label="სწრაფი არჩევანი">
+        <button class="pill" type="button" data-preset="budget">ქართული და ბიუჯეტური</button>
+        <button class="pill" type="button" data-preset="khinkali">ხინკალი მინდა</button>
+        <button class="pill" type="button" data-preset="road">ბორჯომის გზაზე</button>
+      </div>
+      <div class="finder-fields">
+        <label for="area">სად?<select id="area"><option value="">ყველა ადგილი</option></select></label>
+        <label for="cuisine">სამზარეულო<select id="cuisine"><option value="">ყველა სამზარეულო</option></select></label>
+        <label for="food">რა გინდა?<select id="food"><option value="">ყველა კერძი</option></select></label>
+        <label for="budget">ერთ ადამიანზე<select id="budget"><option value="">ნებისმიერი</option><option value="1">≤30 ₾</option><option value="2">30–60 ₾</option><option value="3">60+ ₾</option></select></label>
+      </div>
+      <div class="finder-footer"><button id="reset" class="reset" type="button">გასუფთავება</button></div>
+    </section>
     <div id="filters" class="filters" role="group" aria-label="ადგილის კატეგორია"></div>
+    <div class="results-toolbar"><p id="count" class="count" role="status" aria-live="polite" aria-atomic="true"></p><label for="sort">დალაგება<select id="sort"><option value="match">შესაბამისობით</option><option value="budget">ბიუჯეტით</option><option value="name">ანბანით</option></select></label></div>
+    <p id="match-note" class="match-note" hidden></p>
     <div id="cards" class="cards grid-cols-1 md:grid-cols-2 lg:grid-cols-3"></div>
-    <p id="empty" class="empty" hidden>ამ კატეგორიაში ადგილები ვერ მოიძებნა.</p>
+    <div id="empty" class="empty" hidden><p>ამ არჩევანით ადგილი ვერ მოიძებნა. სცადე სხვა ქალაქი, ბიუჯეტი ან ნაკლები ფილტრი.</p><button id="empty-reset" class="reset" type="button">ყველა ადგილის ნახვა</button></div>
     <noscript><p class="empty">გზამკვლევის სანახავად ჩართე JavaScript.</p></noscript>
   </section>
 </main>
@@ -54,8 +76,10 @@ dialog{max-height:calc(100dvh - 2rem);overscroll-behavior:contain}
     <button type="button" class="close" aria-label="დახურვა" autofocus><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
     <p class="dialog-meta" id="detail-meta"></p>
     <h2 class="dialog-title" id="detail-title"></h2>
+    <p id="detail-address" class="finder-note"></p>
     <div id="detail-photos" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4" hidden></div>
     <div class="story" id="detail-story"></div>
+    <div id="detail-budget" class="budget-detail"></div>
     <h3>რის გასინჯვას გირჩევთ</h3>
     <ul class="recommendations" id="detail-dishes"></ul>
     <section id="detail-branches" hidden aria-labelledby="branches-title">
@@ -65,9 +89,11 @@ dialog{max-height:calc(100dvh - 2rem);overscroll-behavior:contain}
     </section>
     <a class="map-link" id="detail-map" target="_blank" rel="noopener noreferrer">Google Maps-ზე ნახვა</a>
     <a class="source-link" id="detail-menu" target="_blank" rel="noopener noreferrer" hidden>მენიუს ნახვა</a>
-    <a class="source-link" id="detail-source" target="_blank" rel="noopener noreferrer" hidden>წყარო</a>
   </div>
 </dialog>
+<script src="places.js"></script>
+<script src="discovery.js"></script>
+<script src="map-data.js"></script>
 <script>
 /*
  * ახალი ადგილის დამატება: დააკოპირე ქვემოთ მოცემული ობიექტის სტრუქტურა
@@ -295,11 +321,11 @@ const locationsData = [
     source: 'https://yandex.com.ge/maps/org/zodiaqo/88516383960/'
   },
   {
-    name: 'რესტორანი „ცოლის ცრემლები“', city: 'ჩარგალი (მცხეთა-მთიანეთი)', category: 'რეგიონები',
+    name: 'რესტორანი „ცოლის ცრემლები“', city: 'შარახევი / ჩარგლის გზა (მცხეთა-მთიანეთი)', category: 'რეგიონები',
     dish: 'ფშაური ხინკალი',
-    teaser: 'ფშაური სახინკლე ჩარგალთან, არაგვის პირას.',
+    teaser: 'ფშაური სახინკლე შარახევთან, ჟინვალი–ბარისახო–შატილის გზაზე.',
     story: [
-      '„ცოლის ცრემლები“ დუშეთის მუნიციპალიტეტში, ჩარგალთან, ჟინვალი–ბარისახო–შატილის გზაზე მდებარეობს. სახინკლე ფშაური ხინკლითაა ცნობილი.'
+      '„ცოლის ცრემლები“ დუშეთის მუნიციპალიტეტში, შარახევთან, ჟინვალი–ბარისახო–შატილის გზაზე მდებარეობს. სახინკლე ფშაური ხინკლითაა ცნობილი.'
     ],
     dishes: ['ფშაური ხინკალი', 'მწვადი'],
     imageSrc: 'https://lh3.googleusercontent.com/grass-cs/AABkmLeWhcPssuh60JvY084CBjFgG3JMzaz3HgwRlo0ciEyMLYvagAFtxsb-xZyOTpN9upeOnqbWdo8sMnFco7G3X1MExO3MwYNwKfWVhmXcrOPLlV2CzVQi001x8Z4aa21RZOM9Cm1-=w816-h1088-k-no',
@@ -427,6 +453,18 @@ const locationsData = [
   }
 ];
 
+locationsData.push(...addedLocations);
+// Every pin and every price comes from its audited Google Maps listing.
+// Old menu-based tiers are deliberately replaced, including by unknown prices.
+const places = locationsData.map(location => {
+  const verified=verifiedMapData[location.name];
+  if (!verified) throw new Error('Missing verified map: '+location.name);
+  const merged={...location,...verified};
+  if (location.branches) merged.branches=location.branches.map((branch,index)=>({...branch,...verified.branches[index]}));
+  const inferred=TasteFinder.infer(merged);
+  return {...inferred,budget:TasteFinder.budgetTier(TasteFinder.priceSummary(inferred))};
+});
+const budgetLabels = {1:'ბიუჯეტური · ≤30 ₾',2:'საშუალო · 30–60 ₾',3:'მაღალი · 60+ ₾'};
 const byId = (id) => document.getElementById(id);
 const make = (tag, className, content) => {
   const node = document.createElement(tag);
@@ -440,12 +478,14 @@ const dialog = byId('details');
 const preferredCategories = ['თბილისი', 'რეგიონები', 'ლეგენდარული ადგილები', 'ცომეული'];
 const categories = ['ყველა', ...new Set([...preferredCategories, ...locationsData.map(({ category }) => category)])];
 let activeCategory = 'ყველა';
+let state = {query:'',area:'',cuisine:'',food:'',budget:'',sort:'match'};
 let lastCard;
 
 function openStory(location, card) {
   lastCard = card;
   byId('detail-title').textContent = location.name;
   byId('detail-meta').textContent = location.city + ' · ' + location.category;
+  byId('detail-address').textContent = location.verifiedAddress || (location.branches?.length ? 'აირჩიე კონკრეტული ფილიალი ქვემოთ.' : '');
   const photoPanel = byId('detail-photos');
   const photos = location.photos ?? [];
   photoPanel.replaceChildren(...photos.map(({ src, alt }) => {
@@ -458,31 +498,31 @@ function openStory(location, card) {
   }));
   photoPanel.hidden = photos.length === 0;
   byId('detail-story').replaceChildren(...location.story.map((paragraph) => make('p', '', paragraph)));
+  const budgetPanel=byId('detail-budget');
+  budgetPanel.replaceChildren(make('strong','',TasteFinder.priceLabel(location)));
   byId('detail-dishes').replaceChildren(...location.dishes.map((dish) => make('li', '', dish)));
   const branches = location.branches ?? [];
   byId('detail-branches').hidden = branches.length === 0;
-  byId('branch-list').replaceChildren(...branches.map(({ district, address, pin, mapsUrl }) => {
+  byId('branch-list').replaceChildren(...branches.map((branch) => {
+    const {district,mapsUrl,verifiedAddress}=branch;
     const item = make('li');
-    const link = make('a', 'underline', district + ' — ' + address);
-    link.href = mapsUrl ?? ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(pin));
+    const link = make('a', 'underline', district + ' — ' + verifiedAddress);
+    link.href = mapsUrl;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     item.append(link);
+    item.append(make('p','',TasteFinder.priceLabel(branch)));
     return item;
   }));
   byId('branch-note').textContent = location.branchNote ?? '';
   const map = byId('detail-map');
   map.hidden = branches.length > 0;
   if (map.hidden) map.removeAttribute('href');
-  else map.href = location.mapsUrl ?? ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(location.maps));
-  const source = byId('detail-source');
+  else map.href = location.mapsUrl;
   const menu = byId('detail-menu');
   menu.hidden = !location.menuUrl;
   if (location.menuUrl) menu.href = location.menuUrl;
   else menu.removeAttribute('href');
-  source.hidden = !location.source;
-  if (location.source) source.href = location.source;
-  else source.removeAttribute('href');
   dialog.showModal();
   dialog.scrollTop = 0;
   document.body.classList.add('scroll-lock');
@@ -507,10 +547,15 @@ function createCard(location) {
     if (fallback && image.src !== fallback) image.src = fallback;
     else image.hidden = true;
   });
-  image.src = location.photos?.[0]?.src ?? location.imageSrc ?? fallback;
+  const imageSource = location.photos?.[0]?.src ?? location.imageSrc ?? fallback;
+  if (imageSource) image.src = imageSource;
   if (location.imagePosition) image.style.objectPosition = location.imagePosition;
   else if (location.photos) image.style.objectPosition = 'center 72%';
-  media.append(image);
+  if (imageSource) media.append(image);
+  else {
+    media.classList.add('card-cover');
+    media.append(make('small', '', location.route || location.city),make('strong', '', location.name));
+  }
   if (location.signText) {
     const sign = make('span');
     sign.setAttribute('aria-hidden', 'true');
@@ -526,6 +571,10 @@ function createCard(location) {
   dish.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 16h18M5 15a7 7 0 0 1 14 0M12 6V4M2 19h20"/></svg>';
   dish.append(document.createTextNode(location.dish));
   body.append(make('span', 'card-title', location.name), dish, make('span', 'teaser', location.teaser));
+  const tags = make('span', 'card-tags');
+  tags.append(make('span','card-tag',TasteFinder.priceLabel(location)));
+  if (location.highlight) tags.append(make('span','card-tag',location.highlight));
+  body.append(tags);
   button.append(media, body);
   button.addEventListener('click', () => openStory(location, button));
   article.append(button);
@@ -533,13 +582,51 @@ function createCard(location) {
 }
 
 function render() {
-  const matches = locationsData.filter(({ category, city }) =>
-    activeCategory === 'ყველა' || (activeCategory === 'თბილისი' ? city === 'თბილისი' : activeCategory === category)
-  );
+  const matches = TasteFinder.find(places, {...state,category:activeCategory});
   grid.replaceChildren(...matches.map(createCard));
-  byId('count').textContent = matches.length + ' ადგილი';
+  byId('count').textContent = matches.length + ' ადგილი / ' + places.length + '-დან';
   byId('empty').hidden = matches.length > 0;
+  const parsed = TasteFinder.parseQuery(state.query);
+  const labels = [state.area,state.cuisine,state.food,budgetLabels[state.budget || parsed.budget],...parsed.facets].filter(Boolean);
+  byId('match-note').hidden = !labels.length;
+  byId('match-note').textContent = 'შენი არჩევანი: ' + [...new Set(labels)].join(' · ');
+  const params = new URLSearchParams();
+  for (const [key,value] of Object.entries({...state,category:activeCategory})) if(value && value !== 'ყველა' && !(key === 'sort' && value === 'match')) params.set(key,value);
+  history.replaceState(null,'',location.pathname + (params.size ? '?' + params : '') + location.hash);
+  for (const pill of filters.querySelectorAll('button')) pill.setAttribute('aria-pressed',String(pill.textContent === activeCategory));
+  for (const button of document.querySelectorAll('[data-preset]')) button.setAttribute('aria-pressed',String(
+    button.dataset.preset === 'budget' ? state.cuisine === 'ქართული' && state.budget === '1' : button.dataset.preset === 'khinkali' ? state.food === 'ხინკალი' : state.area === 'ბორჯომის გზა'));
 }
+
+for (const [id,values] of [['area',places.map(p=>p.area)],['cuisine',places.flatMap(p=>p.cuisines)],['food',places.flatMap(p=>p.foods)]]) {
+  for (const value of [...new Set(values)].sort((a,b)=>a.localeCompare(b,'ka'))) {
+    const option=make('option','',value); option.value=value; byId(id).append(option);
+  }
+}
+const saved = new URLSearchParams(location.search);
+for (const key of Object.keys(state)) {
+  const control = byId(key === 'query' ? 'search' : key);
+  const value = saved.get(key) || state[key];
+  if (key === 'query' || [...control.options].some(option=>option.value === value)) {state[key]=value;control.value=value;}
+  control.addEventListener(key === 'query' ? 'input' : 'change',()=>{state[key]=control.value;render();});
+}
+if (categories.includes(saved.get('category'))) activeCategory=saved.get('category');
+function resetFinder() {
+  state={query:'',area:'',cuisine:'',food:'',budget:'',sort:'match'};
+  activeCategory='ყველა';
+  for(const [key,value] of Object.entries(state)) byId(key === 'query' ? 'search' : key).value=value;
+  render();
+}
+byId('reset').addEventListener('click',resetFinder);
+byId('empty-reset').addEventListener('click',resetFinder);
+for (const button of document.querySelectorAll('[data-preset]')) button.addEventListener('click',()=>{
+  resetFinder();
+  if(button.dataset.preset === 'budget'){state.cuisine='ქართული';state.budget='1';}
+  if(button.dataset.preset === 'khinkali') state.food='ხინკალი';
+  if(button.dataset.preset === 'road') state.area='ბორჯომის გზა';
+  for (const key of ['area','cuisine','food','budget']) byId(key).value=state[key];
+  render();
+});
 
 for (const category of categories) {
   const pill = make('button', 'pill transition-all duration-300', category);
@@ -547,8 +634,6 @@ for (const category of categories) {
   pill.setAttribute('aria-pressed', String(activeCategory === category));
   pill.addEventListener('click', () => {
     activeCategory = category;
-    filters.querySelector('[aria-pressed="true"]').setAttribute('aria-pressed', 'false');
-    pill.setAttribute('aria-pressed', 'true');
     render();
   });
   filters.append(pill);
