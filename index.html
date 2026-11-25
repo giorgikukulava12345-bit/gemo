@@ -39,6 +39,19 @@ dialog{max-height:calc(100dvh - 2rem);overscroll-behavior:contain}
 .card:hover .pink-bakery-image svg{transform:scale(1.05)}
 .finder{border:1px solid var(--line);border-radius:10px;background:#fff;padding:1.3rem;margin-bottom:1.5rem}.finder h1{font-size:clamp(1.5rem,4vw,2rem);margin-bottom:.45rem}.finder-intro{color:var(--muted);margin-bottom:1.2rem}.search-label{display:block;font-weight:600;margin-bottom:.35rem}.search-box{position:relative}.search-box input{width:100%;min-height:50px;padding:.7rem 1rem;border:1px solid #c7c2be;border-radius:7px;background:var(--paper);font-size:1rem}.finder-fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem;margin:1rem 0}.finder-fields label{display:grid;gap:.35rem;font-size:.875rem;font-weight:600}.finder select,.results-toolbar select{width:100%;min-height:46px;border:1px solid #c7c2be;border-radius:6px;background:var(--paper);padding:.55rem 2rem .55rem .65rem;font:inherit;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 20 20'%3E%3Cpath d='m5 7 5 5 5-5' fill='none' stroke='%2357534e' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .65rem center}.quick-picks{display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0}.finder-footer{display:flex;justify-content:space-between;align-items:center;gap:1rem}.finder-note,.match-note{color:var(--muted);font-size:.875rem}.reset{color:var(--accent);border:0;background:transparent;text-decoration:underline;min-height:44px;padding:.35rem;white-space:nowrap}.results-toolbar{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1rem}.results-toolbar label{display:flex;align-items:center;gap:.5rem;font-size:.875rem}.results-toolbar select{width:auto}.count{font-size:.875rem}.card-tags{display:flex;flex-wrap:wrap;gap:.35rem}.card-tag{font-size:.8rem;border:1px solid var(--line);padding:.15rem .5rem;border-radius:999px;color:var(--muted)}.match-note{margin-bottom:1rem}.card-cover{display:flex;flex-direction:column;justify-content:center;padding:1.5rem;background:#eee8e0;color:#6f301b;gap:.35rem}.card-cover strong{font:600 1.65rem/1.5 var(--serif);max-width:95%}.card-cover small{font-size:.875rem}.card-cover .badge{color:var(--ink)}.budget-detail{margin:1rem 0;padding:.8rem;border:1px solid var(--line);border-radius:6px;font-size:.875rem}.empty .reset{display:block;margin:.5rem auto 0}select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 @media(max-width:800px){.finder-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.finder{padding:1rem}.finder-footer{align-items:flex-start}.results-toolbar{flex-wrap:wrap}}@media(max-width:420px){.finder-footer{flex-direction:column;gap:.2rem}.search-box input{padding:.7rem}.results-toolbar label{width:100%}.results-toolbar select{flex:1}}
+.finder-fields label,.finder-fields select,.results-toolbar label,.results-toolbar select{min-width:0}
+@media(max-width:700px){
+  .finder-fields{grid-template-columns:minmax(0,1fr);gap:1rem}
+  .finder select,.results-toolbar select{font-size:1rem;min-height:50px}
+  .finder-fields label{font-size:.95rem}
+  .results-toolbar{align-items:stretch;gap:.65rem}
+  .results-toolbar label{width:100%;flex-wrap:wrap}
+  .results-toolbar select{width:100%;flex:1 1 100%}
+  .finder-intro,.finder-note,.match-note,.teaser,.card-tag{overflow-wrap:anywhere}
+  .teaser{display:block;-webkit-line-clamp:unset;overflow:visible}
+  .count{white-space:normal}
+}
+@media(max-width:360px){.wrap{width:calc(100% - 1.25rem)}.finder{padding:.8rem}.finder select{padding-left:.6rem;padding-right:1.8rem}}
 </style>
 </head>
 <body>
@@ -48,7 +61,7 @@ dialog{max-height:calc(100dvh - 2rem);overscroll-behavior:contain}
       <h1 id="finder-title">რას მიირთმევდი?</h1>
       <p class="finder-intro">აირჩიე გემო, ადგილი და ბიუჯეტი — იპოვე შენი შემდეგი გაჩერება.</p>
       <label class="search-label" for="search">მოძებნე ადგილი ან კერძი</label>
-      <div class="search-box"><input id="search" type="search" placeholder="მაგ.: ხინკალი ქუთაისში · Georgian budget" autocomplete="off" aria-describedby="search-help"></div>
+      <div class="search-box"><input id="search" type="search" placeholder="მაგ.: ხინკალი" autocomplete="off" aria-describedby="search-help"></div>
       <p id="search-help" class="finder-note">ძიება მუშაობს ქართულად და ინგლისურად. შეგიძლია უბრალოდ ქვემოთ აირჩიო.</p>
       <div class="quick-picks" role="group" aria-label="სწრაფი არჩევანი">
         <button class="pill" type="button" data-preset="budget">ქართული და ბიუჯეტური</button>
