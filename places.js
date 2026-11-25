@@ -580,7 +580,8 @@ addedLocations.push(...[
       "იტალიური"
     ],
     "aliases": "La Burrata",
-    "imageSrc": "photo-burrata.jpg",
+    "imageSrc": "photo-burrata-interior.jpg",
+    "imagePosition": "center 68%",
     "source": "https://yandex.com.ge/maps/org/la_burrata/241485503770/"
   },
   {
