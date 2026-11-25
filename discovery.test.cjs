@@ -36,10 +36,10 @@ test('all selected filters intersect and unknown budgets never pass',()=>{
   assert.ok(matches.every(p=>p.city==='თბილისი' && p.budget===1 && p.foods.includes('ხინკალი')));
   assert.ok(find({budget:'1'}).every(p=>p.googlePrice || p.branches?.every(b=>b.googlePrice)));
 });
-test('road preset contains the three remaining stops',()=>{
+test('road preset retains Loqo and Niavi without the misidentified Foria record',()=>{
   const matches=find({area:'ბორჯომის გზა'});
-  assert.equal(matches.length,3);
-  for(const name of ['ლოქო','ფორია','ნიავი']) assert.ok(matches.some(p=>p.name.includes(name)));
+  assert.equal(matches.length,2);
+  for(const name of ['ლოქო','ნიავი']) assert.ok(matches.some(p=>p.name.includes(name)));
 });
 test('restaurant names, aliases and branch addresses are searchable',()=>{
   assert.equal(find({query:'Pirosmani'})[0].name,'რესტორანი „ფიროსმანი“');
@@ -70,7 +70,7 @@ test('all 73 cards and all 80 branch pins use exact audited identifiers',()=>{
 });
 test('per-person means are calculated solely from the exact Google range',()=>{
   const pins=places.flatMap(p=>p.branches?.length?p.branches:[p]);
-  assert.equal(pins.filter(p=>p.googlePrice).length,65);
+  assert.equal(pins.filter(p=>p.googlePrice).length,64);
   for(const pin of pins){
     const price=pin.googlePrice;
     if(!price)continue;
@@ -135,4 +135,18 @@ test('all 80 exact branch listings have sourced international dialing numbers',(
 });
 test('the four removed restaurants no longer appear in search',()=>{
   for(const query of ['ბიკენტიას','ლაბაძის ძმის','კევრი','ჭაშნაგირი სანაპირო'])assert.equal(find({query}).length,0,query);
+});
+test('Loqo is unique, correctly mapped, and recommended for khachapuri and mtsvadi',()=>{
+  const loqo=find({query:'Loqo'});
+  assert.equal(loqo.length,1);assert.equal(loqo[0].name,'ლოქო');
+  assert.equal(new URL(loqo[0].mapsUrl).searchParams.get('cid'),'13873767494031647076');
+  assert.ok(loqo[0].foods.includes('ხაჭაპური'));assert.ok(loqo[0].foods.includes('მწვადი'));
+  assert.equal(find({query:'Foria'}).length,0);
+});
+test('N1 Steakhouse is searchable by steak with the requested address and phone',()=>{
+  const steak=find({query:'N1 Steakhouse'})[0];
+  assert.equal(steak.name,'სტეიკჰაუსი N1');assert.equal(steak.phone,'+995592000050');
+  assert.equal(steak.address,'ირაკლი აბაშიძის ქ. 35');
+  assert.ok(find({food:'სტეიკი'}).some(p=>p.name===steak.name));
+  assert.equal(steak.googlePrice,null);
 });

@@ -358,34 +358,6 @@ const verifiedMapData = {
       "sourceUrl": "https://www.google.com/maps?cid=1357333094316834614"
     }
   },
-  "რესტორანი „ლოქო“": {
-    "mapsUrl": "https://www.google.com/maps?cid=13873767494031647076",
-    "googleName": "Loqo",
-    "verifiedAddress": "ს8 Akhaldaba ს8 Akhaldaba, Borjomi",
-    "mapCheckedAt": "2026-11-25",
-    "googlePrice": {
-      "min": 10,
-      "max": 50,
-      "average": 30,
-      "sampleCount": 55,
-      "checkedAt": "2026-11-25",
-      "sourceUrl": "https://www.google.com/maps?cid=13873767494031647076"
-    }
-  },
-  "„ფორია“": {
-    "mapsUrl": "https://www.google.com/maps?cid=12794249516842187231",
-    "googleName": "Poria",
-    "verifiedAddress": "WF8J+PXC, Khashuri-Akhaltsikhe-Vale (Republic of Turkey Border), Akhaldaba",
-    "mapCheckedAt": "2026-11-25",
-    "googlePrice": {
-      "min": 10,
-      "max": 60,
-      "average": 35,
-      "sampleCount": 88,
-      "checkedAt": "2026-11-25",
-      "sourceUrl": "https://www.google.com/maps?cid=12794249516842187231"
-    }
-  },
   "რესტორანი „ნიავი“": {
     "mapsUrl": "https://www.google.com/maps?cid=18382293345390135440",
     "googleName": "Niavi",
@@ -1026,5 +998,26 @@ const verifiedMapData = {
     "verifiedAddress": "8 Tchorokhi Street, Tbilisi",
     "mapCheckedAt": "2026-11-25",
     "googlePrice": null
+  },
+  "სტეიკჰაუსი N1": {
+    "mapsUrl": "https://www.google.com/maps?cid=17323277600664180727",
+    "googleName": "N1 Steakhouse",
+    "verifiedAddress": "35 Irakli Abashidze Street, Tbilisi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": null
+  },
+  "ლოქო": {
+    "mapsUrl": "https://www.google.com/maps?cid=13873767494031647076",
+    "googleName": "Loqo",
+    "verifiedAddress": "ს8 Akhaldaba ს8 Akhaldaba, Borjomi",
+    "mapCheckedAt": "2026-11-25",
+    "googlePrice": {
+      "min": 10,
+      "max": 50,
+      "average": 30,
+      "sampleCount": 55,
+      "checkedAt": "2026-11-25",
+      "sourceUrl": "https://www.google.com/maps?cid=13873767494031647076"
+    }
   }
 };

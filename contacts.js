@@ -140,11 +140,6 @@ const contactByMap = {
     "phoneSource": "https://www.google.com/maps/place/Loqo/@41.9171861,43.4831816,17z/data=!3m1!4b1!4m6!3m5!1s0x4043462a8c2ffecd:0xc08986078a1e2164!8m2!3d41.9171861!4d43.4831816!16s%2Fg%2F11f3wtm_xv?entry=ttu&g_ep=EgoyMDI2MTEyMi4wIKXMDSoASAFQAw%3D%3D",
     "phoneCheckedAt": "2026-11-25"
   },
-  "https://www.google.com/maps?cid=12794249516842187231": {
-    "phone": "+995598725655",
-    "phoneSource": "https://www.google.com/maps?cid=12794249516842187231",
-    "phoneCheckedAt": "2026-11-25"
-  },
   "https://www.google.com/maps?cid=18382293345390135440": {
     "phone": "+995599161852",
     "phoneSource": "https://www.google.com/maps?cid=18382293345390135440",
@@ -398,6 +393,11 @@ const contactByMap = {
   "https://www.google.com/maps?cid=5017576453301982631": {
     "phone": "+995593767713",
     "phoneSource": "https://www.google.com/maps/place/Chveni/data=!4m7!3m6!1s0x40440d53d10f14d5:0x45a20333346dd5a7!8m2!3d41.7052249!4d44.7996604!16s%2Fg%2F11h3c47p0l!19sChIJ1RQP0VMNREARp9VtNDMDokU?authuser=0&hl=en&g_ep=EgoyMDI2MTEyMi4wIJJjKgBIAVAD&rclk=1",
+    "phoneCheckedAt": "2026-11-25"
+  },
+  "https://www.google.com/maps?cid=17323277600664180727": {
+    "phone": "+995592000050",
+    "phoneSource": "https://www.google.com/maps?cid=17323277600664180727",
     "phoneCheckedAt": "2026-11-25"
   }
 };

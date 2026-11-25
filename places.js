@@ -3,20 +3,13 @@
  */
 const addedLocations = [
   {
-    name: 'რესტორანი „ლოქო“', city: 'ახალდაბა (ბორჯომის გზა)', category: 'რეგიონები',
+    name: 'ლოქო', city: 'ახალდაბა (ბორჯომის გზა)', category: 'რეგიონები',
     imageSrc: 'loqo-exterior.png',
-    dish: 'ქართული სამზარეულო', teaser: 'გაჩერება ახალდაბაში, ბორჯომისკენ მიმავალ გზაზე.',
-    story: ['„ლოქო“ დაბა ახალდაბაშია, ბორჯომის მიმართულებით მგზავრობისას. ქართული კერძებისთვის გზად შესაჩერებელი ადგილია.'],
-    dishes: ['ქართული კერძები — არჩევანი ადგილზე გადაამოწმე'], maps: 'რესტორანი ლოქო ახალდაბა ბორჯომი',
+    dish: 'ხაჭაპური და მწვადი', teaser: 'ხაჭაპური და უგემრიელესი მწვადი ახალდაბაში, ბორჯომის გზაზე.',
+    story: ['„ლოქო“ დაბა ახალდაბაში, ბორჯომისკენ მიმავალ გზაზე მდებარეობს. გზამკვლევის რეკომენდაციაა ხაჭაპური და უგემრიელესი მწვადი.'],
+    dishes: ['ხაჭაპური', 'მწვადი'], maps: 'რესტორანი ლოქო ახალდაბა ბორჯომი',
     aliases: 'Loqo Loko Akhaldaba Borjomi ბორჯომისკენ', route: 'ბორჯომის გზა',
     source: 'https://www.08.ge/index.php/organizations/view/341098/ლოქო'
-  },
-  {
-    name: '„ფორია“', city: 'ახალდაბა (ბორჯომის გზა)', category: 'ცომეული',
-    dish: 'ხაჭაპური', teaser: 'სახაჭაპურე ახალდაბაში, ხაშური–ბორჯომის გზაზე.',
-    story: ['„ფორია“ ახალდაბაში, ბორჯომისკენ მიმავალ გზაზე მდებარეობს. გზად ხაჭაპურისთვის შესაჩერებელი ადგილია.'],
-    dishes: ['ხაჭაპური'], maps: 'ფორია Foria ახალდაბა', aliases: 'Foria Poria Phoria Akhaldaba Borjomi ბორჯომისკენ',
-    route: 'ბორჯომის გზა', source: 'https://untappd.com/v/poria-foria/10713737'
   },
   {
     name: 'რესტორანი „ნიავი“', city: 'ახალდაბა (ბორჯომის გზა)', category: 'რეგიონები',
@@ -935,7 +928,6 @@ const photoOverrides = {
   "„ძმობის დუქანი“": "photo-existing-0.jpg",
   "რესტორანი „დები“": "photo-existing-1.jpg",
   "„ბიკენტიას საქაბაბე“": "photo-existing-2.jpg",
-  "„ფორია“": "photo-existing-3.jpg",
   "რესტორანი „ნიავი“": "photo-existing-4.jpg",
   "„ბერნი“ — Bern": "photo-existing-5.jpg",
   "„ორი ტონა“": "photo-existing-6.jpg",
@@ -944,3 +936,12 @@ const photoOverrides = {
 };
 const millRecommendation=addedLocations.find(p=>p.name==='„წისქვილი“ — ბელიაშვილი');
 if(millRecommendation){millRecommendation.dish='ქაბაბი და ქართული სუფრა';millRecommendation.dishes=['ქაბაბი',...millRecommendation.dishes];}
+addedLocations.push({
+  name:'სტეიკჰაუსი N1',city:'თბილისი',category:'თბილისი',
+  address:'ირაკლი აბაშიძის ქ. 35',dish:'სტეიკი',dishes:['სტეიკი'],
+  teaser:'სტეიკისთვის ვაკეში, ირაკლი აბაშიძის 35-ში.',
+  story:['„სტეიკჰაუსი N1“ ვაკეში, ირაკლი აბაშიძის ქუჩის 35 ნომერში მდებარეობს. გზამკვლევში სტეიკისთვის შერჩეული ადგილია.'],
+  cuisines:['ევროპული'],aliases:'N1 Steakhouse Steakhouse #1 სტეიკჰაუსი#1 სტეიკის სახლი',
+  imageSrc:'photo-steakhouse-n1.jpg',menuUrl:'https://www.facebook.com/SteakhouseN1/',
+  source:'https://www.google.com/maps?cid=17323277600664180727'
+});

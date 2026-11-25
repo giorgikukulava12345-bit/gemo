@@ -27,6 +27,7 @@
     'პილმენი': ['pelmeni', 'პილმენი', 'პელმენი'],
     'კანჭი': ['pork knuckle', 'კანჭ'],
     'შნიცელი': ['schnitzel', 'შნიცელ'],
+    'სტეიკი': ['steak', 'სტეიკ'],
     'თბილისი': ['tbilisi', 'თბილის'],
     'ბათუმი': ['batumi', 'ბათუმ'],
     'ქუთაისი': ['kutaisi', 'ქუთაის'],
@@ -48,7 +49,7 @@
       /სადგური|bahnhof/.test(text) ? ['ქართული', 'გერმანული'] : ['ქართული']
     );
     const foods = Object.keys(vocabulary).filter(key =>
-      ['ხინკალი','ხაჭაპური','მწვადი','ქაბაბი','შაურმა','თევზი','პიცა','სუში','დესერტი','სენდვიჩი','ბურგერი','ნიოკი','ღვინო','ბადრიჯანი','პილმენი','კანჭი','შნიცელი'].includes(key) && vocabulary[key].some(word => text.includes(word)));
+      ['ხინკალი','ხაჭაპური','მწვადი','ქაბაბი','შაურმა','თევზი','პიცა','სუში','დესერტი','სენდვიჩი','ბურგერი','ნიოკი','ღვინო','ბადრიჯანი','პილმენი','კანჭი','შნიცელი','სტეიკი'].includes(key) && vocabulary[key].some(word => text.includes(word)));
     const city = location.city.split(' (')[0];
     const area = location.route || city;
     return {...location, cuisines, foods, area};
