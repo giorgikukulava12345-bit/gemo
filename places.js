@@ -942,6 +942,6 @@ addedLocations.push({
   teaser:'სტეიკისთვის ვაკეში, ირაკლი აბაშიძის 35-ში.',
   story:['„სტეიკჰაუსი N1“ ვაკეში, ირაკლი აბაშიძის ქუჩის 35 ნომერში მდებარეობს. გზამკვლევში სტეიკისთვის შერჩეული ადგილია.'],
   cuisines:['ევროპული'],aliases:'N1 Steakhouse Steakhouse #1 სტეიკჰაუსი#1 სტეიკის სახლი',
-  imageSrc:'photo-steakhouse-n1.jpg',menuUrl:'https://www.facebook.com/SteakhouseN1/',
+  imageSrc:'photo-steakhouse-n1-exterior.png',menuUrl:'https://www.facebook.com/SteakhouseN1/',
   source:'https://www.google.com/maps?cid=17323277600664180727'
 });
