@@ -1,7 +1,4 @@
-/* Google Maps listings inspected on 2026-11-25.
- * average is the midpoint of the publicly reported range, not a Google-published mean.
- * null prices mean no numerical per-person range was shown.
- */
+/* Audited Google Maps listings and available per-person ranges. */
 const verifiedMapData = {
   "რესტორანი „სადგური / Bahnhof Station“": {
     "mapsUrl": "https://www.google.com/maps?cid=9158453101183089653",
@@ -78,20 +75,6 @@ const verifiedMapData = {
       "sampleCount": 263,
       "checkedAt": "2026-11-25",
       "sourceUrl": "https://www.google.com/maps?cid=8741077849633305341"
-    }
-  },
-  "„ბიკენტიას საქაბაბე“": {
-    "mapsUrl": "https://www.google.com/maps?cid=3785934056121023696",
-    "googleName": "Bikentia's Kebabery",
-    "verifiedAddress": "9 Tsisperi Kantselebi Street, Kutaisi",
-    "mapCheckedAt": "2026-11-25",
-    "googlePrice": {
-      "min": 10,
-      "max": 20,
-      "average": 15,
-      "sampleCount": 252,
-      "checkedAt": "2026-11-25",
-      "sourceUrl": "https://www.google.com/maps?cid=3785934056121023696"
     }
   },
   "„სტელა არტუა“ (Stella Artois Tbilisi)": {
@@ -319,20 +302,6 @@ const verifiedMapData = {
       "sourceUrl": "https://www.google.com/maps/search/?api=1&query=41.6921807%2C44.816599&query_place_id=ChIJLcu1erANREARhrnscBAgnQU"
     }
   },
-  "ლაბაძის ძმის ქაბაბი": {
-    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Labadzis%20Dzmis%20Qababi%2C%2054d%20Sulkhan%20Tsintsadze%20St%2C%20Tbilisi&query_place_id=ChIJVZWAl-xzREARvHeyNnP6vrQ",
-    "googleName": "Labadzis Dzmis Qababi",
-    "verifiedAddress": "54d Sulkhan Tsintsadze St, Tbilisi 0160",
-    "mapCheckedAt": "2026-11-25",
-    "googlePrice": {
-      "min": 20,
-      "max": 30,
-      "average": 25,
-      "sampleCount": 86,
-      "checkedAt": "2026-11-25",
-      "sourceUrl": "https://www.google.com/maps/search/?api=1&query=Labadzis%20Dzmis%20Qababi%2C%2054d%20Sulkhan%20Tsintsadze%20St%2C%20Tbilisi&query_place_id=ChIJVZWAl-xzREARvHeyNnP6vrQ"
-    }
-  },
   "კაფე „ფუნიკულიორი“": {
     "mapsUrl": "https://www.google.com/maps?cid=14188476716431875007",
     "googleName": "Funicular",
@@ -459,20 +428,6 @@ const verifiedMapData = {
       "sourceUrl": "https://www.google.com/maps?cid=10837935110643170877"
     }
   },
-  "რესტორანი „კევრი“": {
-    "mapsUrl": "https://www.google.com/maps?cid=8102377743473633522",
-    "googleName": "Restaurant Kevri",
-    "verifiedAddress": "Khashuri",
-    "mapCheckedAt": "2026-11-25",
-    "googlePrice": {
-      "min": 20,
-      "max": 70,
-      "average": 45,
-      "sampleCount": 77,
-      "checkedAt": "2026-11-25",
-      "sourceUrl": "https://www.google.com/maps?cid=8102377743473633522"
-    }
-  },
   "„ელ დეპო“": {
     "mapsUrl": "https://www.google.com/maps?cid=8533903389826012862",
     "googleName": "Eldepo",
@@ -575,13 +530,6 @@ const verifiedMapData = {
       "sourceUrl": "https://www.google.com/maps?cid=13067415315917605"
     }
   },
-  "„ჭაშნაგირი“ — სანაპირო": {
-    "mapsUrl": "https://www.google.com/maps?cid=16143358409406953329",
-    "googleName": "Sanapiro სანაპირო",
-    "verifiedAddress": "Nickoloz, Nikoloz Baratashvili Named Left Bank, Tbilisi",
-    "mapCheckedAt": "2026-11-25",
-    "googlePrice": null
-  },
   "„წისქვილი“ — ბელიაშვილი": {
     "mapsUrl": "https://www.google.com/maps?cid=4893030621056386169",
     "googleName": "ეთნო წისქვილი • Ethno Tsiskvili",
@@ -630,11 +578,7 @@ const verifiedMapData = {
       "checkedAt": "2026-11-25",
       "sourceUrl": "https://www.google.com/maps?cid=7122244448799475944"
     }
-  }
-};
-
-// Additional audited listings
-Object.assign(verifiedMapData, {
+  },
   "ვერიკო": {
     "mapsUrl": "https://www.google.com/maps?cid=15007226784844969539",
     "googleName": "Veriko",
@@ -1083,4 +1027,4 @@ Object.assign(verifiedMapData, {
     "mapCheckedAt": "2026-11-25",
     "googlePrice": null
   }
-});
+};

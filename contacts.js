@@ -30,11 +30,6 @@ const contactByMap = {
     "phoneSource": "https://www.google.com/maps?cid=8741077849633305341",
     "phoneCheckedAt": "2026-11-25"
   },
-  "https://www.google.com/maps?cid=3785934056121023696": {
-    "phone": "+995597401140",
-    "phoneSource": "https://www.yell.ge/company.php?id=139408&lan=geo",
-    "phoneCheckedAt": "2026-11-25"
-  },
   "https://www.google.com/maps?cid=17548905557153080549": {
     "phone": "+995558735000",
     "phoneSource": "https://www.google.com/maps/place/Stella+Artois+Tbilisi/@41.6907275,44.8064291,17z/data=!3m1!4b1!4m6!3m5!1s0x40440cf0b8f7545d:0xf38a3ca04afce4e5!8m2!3d41.6907275!4d44.809004!16s%2Fg%2F11cs390d6q?entry=ttu&g_ep=EgoyMDI2MTEyMi4wIKXMDSoASAFQAw%3D%3D",
@@ -115,11 +110,6 @@ const contactByMap = {
     "phoneSource": "https://www.google.com/maps/search/?api=1&query=41.6921807%2C44.816599&query_place_id=ChIJLcu1erANREARhrnscBAgnQU",
     "phoneCheckedAt": "2026-11-25"
   },
-  "https://www.google.com/maps/search/?api=1&query=Labadzis%20Dzmis%20Qababi%2C%2054d%20Sulkhan%20Tsintsadze%20St%2C%20Tbilisi&query_place_id=ChIJVZWAl-xzREARvHeyNnP6vrQ": {
-    "phone": "+995504224455",
-    "phoneSource": "https://www.google.com/maps/search/?api=1&query=Labadzis%20Dzmis%20Qababi%2C%2054d%20Sulkhan%20Tsintsadze%20St%2C%20Tbilisi&query_place_id=ChIJVZWAl-xzREARvHeyNnP6vrQ",
-    "phoneCheckedAt": "2026-11-25"
-  },
   "https://www.google.com/maps?cid=14188476716431875007": {
     "phone": "+995577744400",
     "phoneSource": "https://www.google.com/maps/place/Funicular/@41.6949837,44.7839561,17z/data=!3m1!4b1!4m6!3m5!1s0x40440cea7f849b53:0xc4e798665ad29bbf!8m2!3d41.6949837!4d44.786531!16s%2Fg%2F1ptz9qtxq?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MTEyMi4wIKXMDSoASAFQAw%3D%3D",
@@ -170,11 +160,6 @@ const contactByMap = {
     "phoneSource": "https://www.google.com/maps?cid=10837935110643170877",
     "phoneCheckedAt": "2026-11-25"
   },
-  "https://www.google.com/maps?cid=8102377743473633522": {
-    "phone": "+995599327323",
-    "phoneSource": "https://www.google.com/maps/place/Restaurant+Kevri/@41.9499508,43.5077376,17z/data=!3m1!4b1!4m6!3m5!1s0x40434fcc07b4f88d:0x70716da123c6e8f2!8m2!3d41.9499508!4d43.5103125!16s%2Fg%2F11q8sjf7v8?entry=ttu&g_ep=EgoyMDI2MTEyMi4wIKXMDSoASAFQAw%3D%3D",
-    "phoneCheckedAt": "2026-11-25"
-  },
   "https://www.google.com/maps?cid=8533903389826012862": {
     "phone": "+995431244273",
     "phoneSource": "https://www.google.com/maps/place/Eldepo/@42.2681002,42.6953069,17z/data=!3m1!4b1!4m6!3m5!1s0x405c8cefa6dac451:0x766e83eb2214d6be!8m2!3d42.2681002!4d42.6978818!16s%2Fg%2F11h9z71z_2?entry=ttu&g_ep=EgoyMDI2MTEyMi4wIKXMDSoASAFQAw%3D%3D",
@@ -208,11 +193,6 @@ const contactByMap = {
   "https://www.google.com/maps?cid=13067415315917605": {
     "phone": "+995555474782",
     "phoneSource": "https://www.google.com/maps?cid=13067415315917605",
-    "phoneCheckedAt": "2026-11-25"
-  },
-  "https://www.google.com/maps?cid=16143358409406953329": {
-    "phone": "+995555474734",
-    "phoneSource": "https://www.google.com/maps?cid=16143358409406953329",
     "phoneCheckedAt": "2026-11-25"
   },
   "https://www.google.com/maps?cid=4893030621056386169": {

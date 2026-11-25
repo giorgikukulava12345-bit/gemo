@@ -13,10 +13,10 @@ vm.runInContext(inline,context);
 const places=vm.runInContext('places',context);
 const find=state=>finder.find(places,state);
 
-test('all 77 places retain details and distinct branches',()=>{
-  assert.equal(places.length,77);
-  assert.equal(new Set(places.map(p=>p.name)).size,77);
-  assert.equal(places.filter(p=>p.name.includes('ჭაშნაგირი')).length,2);
+test('all 73 places retain details and distinct branches',()=>{
+  assert.equal(places.length,73);
+  assert.equal(new Set(places.map(p=>p.name)).size,73);
+  assert.equal(places.filter(p=>p.name.includes('ჭაშნაგირი')).length,1);
   for(const place of places){assert.ok(Array.isArray(place.story));assert.ok(place.dishes.length);assert.ok(place.maps || place.mapsUrl || place.branches?.length);}
 });
 test('Georgian natural request combines city and dish',()=>{
@@ -36,10 +36,10 @@ test('all selected filters intersect and unknown budgets never pass',()=>{
   assert.ok(matches.every(p=>p.city==='თბილისი' && p.budget===1 && p.foods.includes('ხინკალი')));
   assert.ok(find({budget:'1'}).every(p=>p.googlePrice || p.branches?.every(b=>b.googlePrice)));
 });
-test('road preset contains all four requested stops',()=>{
+test('road preset contains the three remaining stops',()=>{
   const matches=find({area:'ბორჯომის გზა'});
-  assert.equal(matches.length,4);
-  for(const name of ['ლოქო','ფორია','ნიავი','კევრი']) assert.ok(matches.some(p=>p.name.includes(name)));
+  assert.equal(matches.length,3);
+  for(const name of ['ლოქო','ფორია','ნიავი']) assert.ok(matches.some(p=>p.name.includes(name)));
 });
 test('restaurant names, aliases and branch addresses are searchable',()=>{
   assert.equal(find({query:'Pirosmani'})[0].name,'რესტორანი „ფიროსმანი“');
@@ -52,14 +52,14 @@ test('budget sort puts unknown tiers last and clear state returns everything',()
   const sorted=find({sort:'budget'});
   assert.equal(sorted[0].budget,1);
   assert.equal(sorted.at(-1).budget,undefined);
-  assert.equal(find({query:'',category:'ყველა'}).length,77);
+  assert.equal(find({query:'',category:'ყველა'}).length,73);
   assert.equal(find({query:'no-such-restaurant-abc'}).length,0);
 });
 
-test('all 77 cards and all 84 branch pins use exact audited identifiers',()=>{
+test('all 73 cards and all 80 branch pins use exact audited identifiers',()=>{
   const pins=places.flatMap(p=>p.branches?.length?p.branches:[p]);
-  assert.equal(pins.length,84);
-  assert.equal(new Set(pins.map(p=>p.mapsUrl)).size,84);
+  assert.equal(pins.length,80);
+  assert.equal(new Set(pins.map(p=>p.mapsUrl)).size,80);
   for(const pin of pins){
     const url=new URL(pin.mapsUrl);
     assert.equal(url.hostname,'www.google.com');
@@ -70,7 +70,7 @@ test('all 77 cards and all 84 branch pins use exact audited identifiers',()=>{
 });
 test('per-person means are calculated solely from the exact Google range',()=>{
   const pins=places.flatMap(p=>p.branches?.length?p.branches:[p]);
-  assert.equal(pins.filter(p=>p.googlePrice).length,68);
+  assert.equal(pins.filter(p=>p.googlePrice).length,65);
   for(const pin of pins){
     const price=pin.googlePrice;
     if(!price)continue;
@@ -122,9 +122,9 @@ test('every card has a restaurant photo and local photo files exist',()=>{
     if(!/^(https?:|data:)/.test(src))assert.ok(fs.statSync(src).size>1000,'Missing photo: '+src);
   }
 });
-test('all 84 exact branch listings have sourced international dialing numbers',()=>{
+test('all 80 exact branch listings have sourced international dialing numbers',()=>{
   const pins=places.flatMap(p=>p.branches?.length?p.branches:[p]);
-  assert.equal(pins.length,84);
+  assert.equal(pins.length,80);
   for(const pin of pins){assert.match(pin.phone,/^\+995\d{9}$/);assert.ok(pin.phoneSource.startsWith('https://'));assert.equal(pin.phoneCheckedAt,'2026-11-25');}
   assert.equal(find({query:'Chveni'})[0].phone,'+995593767713');
   const zodiac=find({query:'Zodiaqo'})[0];
@@ -132,4 +132,7 @@ test('all 84 exact branch listings have sourced international dialing numbers',(
   assert.equal(zodiac.branches[1].phone,'+995551272241');
   assert.equal(finder.phoneLabel('+995593767713'),'593 76 77 13');
   assert.equal(finder.phoneLabel('+995322185253'),'032 218 52 53');
+});
+test('the four removed restaurants no longer appear in search',()=>{
+  for(const query of ['ბიკენტიას','ლაბაძის ძმის','კევრი','ჭაშნაგირი სანაპირო'])assert.equal(find({query}).length,0,query);
 });

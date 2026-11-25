@@ -57,6 +57,7 @@ dialog{max-height:calc(100dvh - 2rem);overscroll-behavior:contain}
 .card-contact{display:grid;gap:.6rem;padding:0 1.15rem 1rem}.phone-group{display:grid;gap:.2rem;min-width:0}.phone-branch{color:var(--muted);font-size:.8rem;overflow-wrap:anywhere}
 .phone-link{display:inline-flex;align-items:center;gap:.45rem;min-height:44px;width:fit-content;max-width:100%;padding:.4rem .65rem;border:1px solid var(--line);border-radius:6px;color:var(--accent);background:var(--paper);text-decoration:none;font-size:.9rem;font-weight:600;flex-wrap:wrap}
 .phone-link:hover{border-color:var(--accent);background:#fff7ed}.phone-number{white-space:nowrap;font-variant-numeric:tabular-nums}.detail-contact{margin:.65rem 0 1rem}
+.card-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.45rem}.card-map-link{justify-content:center}
 @media(max-width:700px){.card-contact{padding:0 1rem 1rem}}
 </style>
 </head>
@@ -209,19 +210,6 @@ const locationsData = [
     ],
     dishes: ["იმერული ხაჭაპური","ფხალის ასორტი"],
     image: 'photo-1512621776951-a57141f2eefd', maps: 'რესტორანი დები ქუთაისი Debi', aliases: 'Debi Kutaisi Imereti pkhali khachapuri'
-  },
-  {
-    name: '„ბიკენტიას საქაბაბე“', city: 'ქუთაისი (იმერეთი)', category: 'ლეგენდარული ადგილები',
-    menuUrl: 'https://restaurantguru.com/Bikentias-Kebabery-Kutaisi/menu',
-    dish: 'ქუთაისური ქაბაბი პომიდორ-ნივრის საწებლით',
-    teaser: 'ქაბაბი, პური და ცხარე საწებელი — ქუთაისის რამდენიმე თაობის სადილის ჩვევა.',
-    story: [
-      'ქუთაისის ცენტრში „ბიკენტიას საქაბაბეს“ ისტორია XX საუკუნის შუა წლებიდან მოჰყვება ქალაქს.',
-      'ქუთაისურ ქაბაბს პომიდვრისა და ნივრის ცხარე საწებელი გამოარჩევს. საქაბაბეში დღემდე დგას მაღალი მაგიდები ფეხზე სადილისთვის.'
-    ],
-    dishes: ["ქუთაისური ქაბაბი პომიდვრისა და ნივრის საწებლით"],
-    image: 'photo-1555939594-58d7cb561ad1', maps: 'Bikentias Kebabery Kutaisi Georgia', aliases: 'Bikentia Kutaisi kebab საწებელი',
-    source: 'https://www.youtube.com/watch?v=1CdqTXFr_5E'
   },
   {
     name: '„სტელა არტუა“ (Stella Artois Tbilisi)', city: 'თბილისი', category: 'თბილისი',
@@ -393,19 +381,6 @@ const locationsData = [
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=41.6921807%2C44.816599&query_place_id=ChIJLcu1erANREARhrnscBAgnQU',
     menuUrl: 'https://vakhtanguri.com/ka/მენიუ/',
     source: 'https://vakhtanguri.com/ka/ჩებურეკი-თბილისში/'
-  },
-  {
-    name: 'ლაბაძის ძმის ქაბაბი', city: 'თბილისი', category: 'თბილისი',
-    dish: 'ქაბაბი',
-    teaser: 'ღორისა და საქონლის ქაბაბი ლავაშითა და საწებლით, საბურთალოზე.',
-    story: [
-      '„ლაბაძის ძმის ქაბაბი“ საბურთალოზე, სულხან ცინცაძის ქუჩის 54დ-ში მდებარეობს. აქ ღორისა და საქონლის ქაბაბს ლავაშითა და საწებლით ამზადებენ.'
-    ],
-    dishes: ['ღორის ქაბაბი', 'საქონლის ქაბაბი'],
-    imageSrc: 'https://images.bolt.eu/store/2026/2026-08-27/8f35015f-8d10-4d0a-80cb-2e94750a9d02.jpeg',
-    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Labadzis+Dzmis+Qababi%2C+54d+Sulkhan+Tsintsadze+St%2C+Tbilisi&query_place_id=ChIJVZWAl-xzREARvHeyNnP6vrQ',
-    menuUrl: 'https://new-food.bolt.eu/ka-ge/15-tbilisi/restaurant/175688-labazis-zmis-kababi',
-    source: 'https://onlyfoods.ge/ka/r/labadzis-dzmis-qababi'
   },
   {
     name: 'კაფე „ფუნიკულიორი“', city: 'თბილისი', category: 'ლეგენდარული ადგილები',
@@ -613,19 +588,22 @@ function createCard(location) {
   button.addEventListener('click', () => openStory(location, button));
   article.append(button);
   const calls=make('div','card-contact');
-  const numbers=new Map();
   for(const entry of location.branches?.length?location.branches:[location]){
-    if(!entry.phone)continue;
-    if(!numbers.has(entry.phone))numbers.set(entry.phone,[]);
-    if(entry.district)numbers.get(entry.phone).push(entry.district);
-  }
-  for(const [phone,districts] of numbers){
     const group=make('div','phone-group');
-    if(districts.length)group.append(make('span','phone-branch',districts.join(' · ')));
-    group.append(makePhoneLink(phone,location.name+(districts.length?' · '+districts.join(', '):'')));
+    if(entry.district)group.append(make('span','phone-branch',entry.district));
+    const actions=make('div','card-actions');
+    const label=location.name+(entry.district?' · '+entry.district:'');
+    if(entry.phone)actions.append(makePhoneLink(entry.phone,label));
+    const mapLink=make('a','phone-link card-map-link','რუკა');
+    mapLink.href=entry.mapsUrl;
+    mapLink.target='_blank';
+    mapLink.rel='noopener noreferrer';
+    mapLink.setAttribute('aria-label','რუკაზე ნახვა: '+label);
+    actions.append(mapLink);
+    group.append(actions);
     calls.append(group);
   }
-  if(numbers.size)article.append(calls);
+  article.append(calls);
   return article;
 }
 
