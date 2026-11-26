@@ -59,9 +59,26 @@ dialog{max-height:calc(100dvh - 2rem);overscroll-behavior:contain}
 .phone-link:hover{border-color:var(--accent);background:#fff7ed}.phone-number{white-space:nowrap;font-variant-numeric:tabular-nums}.detail-contact{margin:.65rem 0 1rem}
 .card-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.45rem}.card-map-link{justify-content:center}
 @media(max-width:700px){.card-contact{padding:0 1rem 1rem}}
+
+.site-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;padding-top:1rem}
+.site-brand{display:flex;align-items:center;gap:.7rem;font-weight:700;text-decoration:none;min-height:44px}
+.georgia-flag{width:42px;height:28px;border:1px solid #ddd;object-fit:contain;border-radius:2px}
+.language-switch{display:flex;flex-wrap:wrap;gap:.3rem;padding:.25rem;border:1px solid var(--line);border-radius:8px;background:#fff}
+.language-switch button{min-height:44px;padding:.35rem .65rem;border:1px solid transparent;border-radius:5px;background:transparent;color:var(--muted);font:inherit;font-size:.875rem}
+.language-switch button[aria-pressed=true]{background:var(--accent);color:white}
+.language-switch button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:420px){.site-header{align-items:flex-start}.language-switch{width:100%;justify-content:space-between}.language-switch button{flex:1}}
 </style>
 </head>
 <body>
+<header class="wrap site-header">
+  <a class="site-brand" href="/" aria-label="გემოს რუკა"><img class="georgia-flag" src="georgia-flag.svg" alt="საქართველო" width="42" height="28"><span>გემოს რუკა</span></a>
+  <nav class="language-switch" aria-label="საიტის ენა">
+    <button type="button" data-lang="ka" lang="ka" aria-pressed="true">ქართული</button>
+    <button type="button" data-lang="en" lang="en" aria-pressed="false">English</button>
+    <button type="button" data-lang="ru" lang="ru" aria-pressed="false">Русский</button>
+  </nav>
+</header>
 <main class="wrap">
   <section class="guide" id="guide" aria-label="ადგილების გზამკვლევი">
     <section class="finder" aria-labelledby="finder-title">
@@ -69,7 +86,7 @@ dialog{max-height:calc(100dvh - 2rem);overscroll-behavior:contain}
       <p class="finder-intro">აირჩიე გემო, ადგილი და ბიუჯეტი — იპოვე შენი შემდეგი გაჩერება.</p>
       <label class="search-label" for="search">მოძებნე ადგილი ან კერძი</label>
       <div class="search-box"><input id="search" type="search" placeholder="მაგ.: ხინკალი" autocomplete="off" aria-describedby="search-help"></div>
-      <p id="search-help" class="finder-note">ძიება მუშაობს ქართულად და ინგლისურად. შეგიძლია უბრალოდ ქვემოთ აირჩიო.</p>
+      <p id="search-help" class="finder-note">ძიება მუშაობს ქართულად, ინგლისურად და რუსულად. შეგიძლია უბრალოდ ქვემოთ აირჩიო.</p>
       <div class="quick-picks" role="group" aria-label="სწრაფი არჩევანი">
         <button class="pill" type="button" data-preset="budget">ქართული და ბიუჯეტური</button>
         <button class="pill" type="button" data-preset="khinkali">ხინკალი მინდა</button>
@@ -116,6 +133,8 @@ dialog{max-height:calc(100dvh - 2rem);overscroll-behavior:contain}
 <script src="discovery.js"></script>
 <script src="map-data.js"></script>
 <script src="contacts.js"></script>
+<script src="place-translations.js"></script>
+<script src="i18n.js"></script>
 <script>
 /*
  * ახალი ადგილის დამატება: დააკოპირე ქვემოთ მოცემული ობიექტის სტრუქტურა
@@ -461,6 +480,8 @@ const places = locationsData.map(location => {
   return {...inferred,budget:TasteFinder.budgetTier(TasteFinder.priceSummary(inferred))};
 });
 const budgetLabels = {1:'ბიუჯეტური · ≤30 ₾',2:'საშუალო · 30–60 ₾',3:'მაღალი · 60+ ₾'};
+const tr = text => TasteI18n.t(text);
+const priceLabel = place => TasteI18n.priceLabel(place);
 const byId = (id) => document.getElementById(id);
 const make = (tag, className, content) => {
   const node = document.createElement(tag);
@@ -468,6 +489,9 @@ const make = (tag, className, content) => {
   if (content) node.textContent = content;
   return node;
 };
+for(const place of places){
+  place.aliases=[place.aliases,...['en','ru'].flatMap(lang=>{const p=TasteI18n.place(place,lang);return [p.name,p.teaser,p.address,...p.dishes];})].join(' ');
+}
 const grid = byId('cards');
 const filters = byId('filters');
 const dialog = byId('details');
@@ -480,15 +504,15 @@ let lastCard;
 function makePhoneLink(phone,name) {
   const link=make('a','phone-link');
   link.href='tel:'+phone;
-  link.setAttribute('aria-label','დარეკვა: '+name+' — '+TasteFinder.phoneLabel(phone));
-  link.append(make('span','','დარეკვა'),make('span','phone-number',TasteFinder.phoneLabel(phone)));
+  link.setAttribute('aria-label',tr('დარეკვა')+': '+name+' — '+TasteFinder.phoneLabel(phone));
+  link.append(make('span','',tr('დარეკვა')),make('span','phone-number',TasteFinder.phoneLabel(phone)));
   return link;
 }
 function openStory(location, card) {
   lastCard = card;
   byId('detail-title').textContent = location.name;
   byId('detail-meta').textContent = location.city + (location.city===location.category?'':' · ' + location.category);
-  byId('detail-address').textContent = location.address || location.verifiedAddress || (location.branches?.length ? 'აირჩიე კონკრეტული ფილიალი ქვემოთ.' : '');
+  byId('detail-address').textContent = location.address || location.verifiedAddress || (location.branches?.length ? tr('აირჩიე კონკრეტული ფილიალი ქვემოთ.') : '');
   const contact=byId('detail-phone');
   contact.replaceChildren();
   contact.hidden=!location.phone || !!location.branches?.length;
@@ -499,14 +523,14 @@ function openStory(location, card) {
     const photo = make('img', 'rounded-md');
     photo.style.height = 'auto';
     photo.src = src;
-    photo.alt = alt;
+    photo.alt = TasteI18n.language==='ka' ? alt : location.name;
     photo.decoding = 'async';
     return photo;
   }));
   photoPanel.hidden = photos.length === 0;
   byId('detail-story').replaceChildren(...location.story.map((paragraph) => make('p', '', paragraph)));
   const budgetPanel=byId('detail-budget');
-  budgetPanel.replaceChildren(make('strong','',TasteFinder.priceLabel(location)));
+  budgetPanel.replaceChildren(make('strong','',priceLabel(location)));
   byId('detail-dishes').replaceChildren(...location.dishes.map((dish) => make('li', '', dish)));
   const branches = location.branches ?? [];
   byId('detail-branches').hidden = branches.length === 0;
@@ -518,7 +542,7 @@ function openStory(location, card) {
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     item.append(link);
-    item.append(make('p','',TasteFinder.priceLabel(branch)));
+    item.append(make('p','',priceLabel(branch)));
     if(branch.phone)item.append(makePhoneLink(branch.phone,location.name+' · '+district));
     return item;
   }));
@@ -542,7 +566,7 @@ function createCard(location) {
   const button = make('button', 'card-main');
   button.type = 'button';
   button.setAttribute('aria-haspopup', 'dialog');
-  button.setAttribute('aria-label', location.name + ' — ამბის წაკითხვა');
+  button.setAttribute('aria-label', location.name + tr(' — ამბის წაკითხვა'));
 
   const media = make('span', 'card-image');
   const image = make('img');
@@ -581,7 +605,7 @@ function createCard(location) {
   dish.append(document.createTextNode(location.dish));
   body.append(make('span', 'card-title', location.name), dish, make('span', 'teaser', location.teaser));
   const tags = make('span', 'card-tags');
-  tags.append(make('span','card-tag',TasteFinder.priceLabel(location)));
+  tags.append(make('span','card-tag',priceLabel(location)));
   if (location.highlight) tags.append(make('span','card-tag',location.highlight));
   body.append(tags);
   button.append(media, body);
@@ -594,11 +618,11 @@ function createCard(location) {
     const actions=make('div','card-actions');
     const label=location.name+(entry.district?' · '+entry.district:'');
     if(entry.phone)actions.append(makePhoneLink(entry.phone,label));
-    const mapLink=make('a','phone-link card-map-link','რუკა');
+    const mapLink=make('a','phone-link card-map-link',tr('რუკა'));
     mapLink.href=entry.mapsUrl;
     mapLink.target='_blank';
     mapLink.rel='noopener noreferrer';
-    mapLink.setAttribute('aria-label','რუკაზე ნახვა: '+label);
+    mapLink.setAttribute('aria-label',tr('რუკაზე ნახვა: ')+label);
     actions.append(mapLink);
     group.append(actions);
     calls.append(group);
@@ -609,17 +633,19 @@ function createCard(location) {
 
 function render() {
   const matches = TasteFinder.find(places, {...state,category:activeCategory});
-  grid.replaceChildren(...matches.map(createCard));
-  byId('count').textContent = matches.length + ' ადგილი / ' + places.length + '-დან';
+  if(state.sort==='name')matches.sort((a,b)=>TasteI18n.place(a).name.localeCompare(TasteI18n.place(b).name,TasteI18n.language));
+  grid.replaceChildren(...matches.map(place=>createCard(TasteI18n.place(place))));
+  byId('count').textContent = TasteI18n.language==='ka' ? matches.length + ' ადგილი / ' + places.length + '-დან' : TasteI18n.language==='en' ? matches.length+' of '+places.length+' places' : matches.length+' из '+places.length+' мест';
   byId('empty').hidden = matches.length > 0;
   const parsed = TasteFinder.parseQuery(state.query);
   const labels = [state.area,state.cuisine,state.food,budgetLabels[state.budget || parsed.budget],...parsed.facets].filter(Boolean);
   byId('match-note').hidden = !labels.length;
-  byId('match-note').textContent = 'შენი არჩევანი: ' + [...new Set(labels)].join(' · ');
+  byId('match-note').textContent = tr('შენი არჩევანი: ') + [...new Set(labels)].map(tr).join(' · ');
   const params = new URLSearchParams();
+  if(TasteI18n.language!=='ka')params.set('lang',TasteI18n.language);
   for (const [key,value] of Object.entries({...state,category:activeCategory})) if(value && value !== 'ყველა' && !(key === 'sort' && value === 'match')) params.set(key,value);
   history.replaceState(null,'',location.pathname + (params.size ? '?' + params : '') + location.hash);
-  for (const pill of filters.querySelectorAll('button')) pill.setAttribute('aria-pressed',String(pill.textContent === activeCategory));
+  for (const pill of filters.querySelectorAll('button')) pill.setAttribute('aria-pressed',String(pill.dataset.category === activeCategory));
   for (const button of document.querySelectorAll('[data-preset]')) button.setAttribute('aria-pressed',String(
     button.dataset.preset === 'budget' ? state.cuisine === 'ქართული' && state.budget === '1' : button.dataset.preset === 'khinkali' ? state.food === 'ხინკალი' : state.area === 'ბორჯომის გზა'));
 }
@@ -656,6 +682,7 @@ for (const button of document.querySelectorAll('[data-preset]')) button.addEvent
 
 for (const category of categories) {
   const pill = make('button', 'pill transition-all duration-300', category);
+  pill.dataset.category=category;
   pill.type = 'button';
   pill.setAttribute('aria-pressed', String(activeCategory === category));
   pill.addEventListener('click', () => {
@@ -674,7 +701,39 @@ dialog.addEventListener('close', () => {
   document.body.classList.remove('scroll-lock');
   lastCard?.focus({ preventScroll: true });
 });
-render();
+
+// Keep original text nodes so changing languages is reversible without translating markup.
+const staticText=[];
+const staticAttributes=[];
+const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+while(walker.nextNode()){
+  const node=walker.currentNode;
+  if(node.parentElement.closest('script,style,#cards,.language-switch'))continue;
+  const key=node.textContent.trim();
+  if(TasteI18n.phrases[key])staticText.push({node,key});
+}
+for(const node of document.querySelectorAll('[aria-label],[placeholder],[alt]')){
+  if(node.closest('.language-switch button'))continue;
+  for(const attr of ['aria-label','placeholder','alt']){
+    const key=node.getAttribute(attr);
+    if(TasteI18n.phrases[key])staticAttributes.push({node,attr,key});
+  }
+}
+function applyLanguage(){
+  document.documentElement.lang=TasteI18n.language;
+  document.title=tr('გემოს რუკა')+' — '+({ka:'ქართული გასტრონომიული გზამკვლევი',en:'Georgian food guide',ru:'Гастрономический путеводитель по Грузии'}[TasteI18n.language]);
+  document.querySelector('meta[name="description"]').content={ka:'გემოს რუკა — ქართული გასტრონომიული გზამკვლევი. აღმოაჩინე კერძები, ადგილები და მათი ამბები.',en:'Taste Map — discover places to eat in Georgia. Search by dish, city, cuisine and budget.',ru:'Карта вкусов — найдите заведения в Грузии по блюдам, городу, кухне и бюджету.'}[TasteI18n.language];
+  for(const {node,key} of staticText)node.textContent=tr(key);
+  for(const {node,attr,key} of staticAttributes)node.setAttribute(attr,tr(key));
+  for(const id of ['area','cuisine','food'])for(const option of byId(id).options)if(option.value)option.textContent=tr(option.value);
+  for(const button of filters.children)button.textContent=tr(button.dataset.category);
+  for(const button of document.querySelectorAll('[data-lang]'))button.setAttribute('aria-pressed',String(button.dataset.lang===TasteI18n.language));
+  document.querySelector('.site-brand').href=location.pathname+(TasteI18n.language==='ka'?'':'?lang='+TasteI18n.language);
+  render();
+}
+for(const button of document.querySelectorAll('[data-lang]'))button.addEventListener('click',()=>{TasteI18n.setLanguage(button.dataset.lang);applyLanguage();});
+applyLanguage();
+
 </script>
 </body>
 </html>

@@ -38,6 +38,9 @@
     'მანავი': ['manavi', 'მანავ'],
     'ბორჯომის გზა': ['borjomi', 'akhaldaba', 'kvishkheti', 'ბორჯომ', 'ახალდაბ', 'ქვიშხეთ', 'ტაშისკარ']
   };
+
+  const russianVocabulary={"ქართული": ["грузинск"], "ევროპული": ["европейск"], "გერმანული": ["немецк"], "იტალიური": ["итальянск"], "იაპონური": ["японск"], "აზიური": ["азиатск"], "ავსტრიული": ["австрийск"], "საკონდიტრო": ["кондитерск", "пекарня", "выпечка"], "სწრაფი კვება": ["фастфуд", "быстрое питание"], "ხინკალი": ["хинкали"], "ხაჭაპური": ["хачапури"], "მწვადი": ["шашлык", "мцвади"], "ქაბაბი": ["кебаб", "люля"], "შაურმა": ["шаурм"], "თევზი": ["рыб"], "პიცა": ["пицц"], "სუში": ["суши", "филадельфия"], "დესერტი": ["десерт", "пончик", "чизкейк"], "სენდვიჩი": ["сэндвич", "сандвич"], "ბურგერი": ["бургер", "биг тейсти"], "ნიოკი": ["ньокки"], "ღვინო": ["вино", "вина", "винодельня"], "ბადრიჯანი": ["баклажан"], "პილმენი": ["пельмен"], "კანჭი": ["рульк"], "შნიცელი": ["шницел"], "სტეიკი": ["стейк"], "თბილისი": ["тбилиси"], "ბათუმი": ["батуми"], "ქუთაისი": ["кутаиси"], "გორი": ["гори"], "ზუგდიდი": ["зугдиди"], "სიღნაღი": ["сигнахи", "сигнаги"], "კაჭრეთი": ["качрети"], "მანავი": ["манави"], "ბორჯომის გზა": ["боржоми", "ахалдаба", "квишхети"]};
+  for(const [key,words] of Object.entries(russianVocabulary))vocabulary[key].push(...words);
   function normalize(value) {
     return String(value || '').normalize('NFKC').toLocaleLowerCase('ka-GE')
       .replace(/[\u2018-\u201f„“"'«»]/g, '').replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
@@ -77,7 +80,7 @@
     if (summary.openEnded) return number(summary.min) + ' ₾-დან / ადამიანი';
     return number(summary.minAverage) + (summary.maxAverage !== summary.minAverage ? '–' + number(summary.maxAverage) : '') + ' ₾ / ადამიანი';
   }
-  const noise = new Set(['i','want','would','like','food','please','and','in','a','an','the','to','eat','me','some','with','friendly','მინდა','საჭმელი','საკვები','და','მომიძებნე','მაჩვენე','ვეძებ','მსურს','რაღაც']);
+  const noise = new Set(['i','want','would','like','food','please','and','in','a','an','the','to','eat','me','some','with','friendly','მინდა','საჭმელი','საკვები','და','მომიძებნე','მაჩვენე','ვეძებ','მსურს','რაღაც','хочу','хочется','найди','найти','покажи','мне','я','еда','еду','кухня','кухню','поесть','пожалуйста','и','в','на','с','для','где','есть']);
   function parseQuery(query) {
     let remaining = normalize(query);
     const facets = [];
@@ -88,7 +91,7 @@
       if (pattern.test(remaining)) { facets.push(key); remaining = remaining.replace(pattern, ' '); }
     }
     let budget = null;
-    for (const [tier, pattern] of [[1, /\b(budget|cheap|affordable|inexpensive)\b|ბიუჯეტურ[\p{L}]*|იაფ[\p{L}]*|ეკონომიურ[\p{L}]*/gu], [2, /\b(midrange|moderate)\b|საშუალო/gu], [3, /\b(premium|expensive|upscale)\b|პრემიუმ[\p{L}]*|ძვირ[\p{L}]*/gu]]) {
+    for (const [tier, pattern] of [[1, /\b(budget|cheap|affordable|inexpensive)\b|(?:недорог|дешев|дёшев|бюджетн)[\p{L}]*|ბიუჯეტურ[\p{L}]*|იაფ[\p{L}]*|ეკონომიურ[\p{L}]*/gu], [2, /\b(midrange|moderate)\b|средн[\p{L}]*|საშუალო/gu], [3, /\b(premium|expensive|upscale)\b|(?:дорог|премиум)[\p{L}]*|პრემიუმ[\p{L}]*|ძვირ[\p{L}]*/gu]]) {
       if (pattern.test(remaining)) {budget=tier; remaining=remaining.replace(pattern,' ');}
     }
     return {facets:[...new Set(facets)], budget, words:remaining.split(/\s+/).filter(word => word && !noise.has(word))};
