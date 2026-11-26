@@ -7,11 +7,43 @@ const context = vm.createContext({TasteFinder:finder});
 vm.runInContext(fs.readFileSync('places.js','utf8'),context);
 vm.runInContext(fs.readFileSync('map-data.js','utf8'),context);
 vm.runInContext(fs.readFileSync('contacts.js','utf8'),context);
+vm.runInContext(fs.readFileSync('price-data.js','utf8'),context);
 const html=fs.readFileSync('index.html','utf8');
 const inline=html.slice(html.indexOf('const locationsData = ['),html.indexOf('const byId ='));
 vm.runInContext(inline,context);
 const places=vm.runInContext('places',context);
 const find=state=>finder.find(places,state);
+
+test('Argo uses the visitor-paid item price, never the Google range midpoint',()=>{
+  const argo=find({query:'Argo'})[0];
+  assert.equal(argo.menuPrices.items[0].amount,6.5);
+  assert.equal(argo.menuPrices.kind,'visit');
+  assert.equal(argo.googlePrice.average,5.5);
+  assert.match(finder.priceLabel(argo),/6[.,]5 ₾ \/ ცალი/);
+});
+
+test('delivery prices remain scoped to the observed MacShaurma branch',()=>{
+  const p=find({query:'MacShaurma'})[0];
+  assert.equal(p.menuPrices,undefined);
+  assert.equal(p.branches.filter(b=>b.menuPrices).length,1);
+  assert.equal(p.branches[2].menuPrices.items[0].amount,14.9);
+  assert.equal(p.branches[0].menuPrices,undefined);
+});
+
+test('all venue prices have an honest status and estimates show the range',()=>{
+  for(const p of places){
+    assert.ok(p.priceCheck);
+    if(p.menuPrices)assert.ok(p.menuPrices.sourceUrl || p.menuPrices.reportedBy==='user');
+    const label=finder.priceLabel(p);
+    if(p.googlePrice&&!p.menuPrices?.primary)assert.ok(label.startsWith('≈ '));
+  }
+});
+
+test('initial page has no embedded raster images or runtime Tailwind dependency',()=>{
+  assert.ok(Buffer.byteLength(html)<100000);
+  assert.doesNotMatch(html,/data:image\/(jpeg|png);base64/);
+  assert.doesNotMatch(html,/@tailwindcss\/browser/);
+});
 
 test('all 73 places retain details and distinct branches',()=>{
   assert.equal(places.length,73);
@@ -86,7 +118,7 @@ test('an open upper bound stays open and a missing Google price never uses a men
   const mill=find({query:'წისქვილი ბელიაშვილი'})[0];
   assert.equal(mill.googlePrice.max,null);
   assert.equal(mill.googlePrice.average,null);
-  assert.equal(finder.priceLabel(mill),'100 ₾-დან / ადამიანი');
+  assert.equal(finder.priceLabel(mill),'≈ 100 ₾-დან / ადამიანი');
   const house=find({query:'ქართული სახლი'})[0];
   assert.equal(house.googlePrice,null);
   assert.equal(house.budget,undefined);
@@ -97,7 +129,7 @@ test('different branches retain individual maps and individual price estimates',
   assert.equal(tona.branches.length,4);
   assert.equal(tona.branches[0].googlePrice.average,50);
   assert.equal(tona.branches[1].googlePrice.average,60);
-  assert.equal(finder.priceLabel(tona),'50–60 ₾ / ადამიანი');
+  assert.equal(finder.priceLabel(tona),'≈ 20–90 ₾ / ადამიანი');
 });
 
 test('new dishes and cuisines are discoverable in Georgian and English',()=>{

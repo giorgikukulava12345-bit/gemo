@@ -1,7 +1,14 @@
 /* Local translations: switching language never sends a visitor's search elsewhere. */
 (function(root){
   const phrases = {};
-  const rows = `ყველა|All|Все
+  const rows = `Google Maps · საორიენტაციო ბიუჯეტი|Google Maps · estimated budget|Google Maps · примерный бюджет
+კერძის ზუსტი ფასი ვერ დადასტურდა — გადაამოწმე ობიექტთან.|The exact dish price is unconfirmed. Check with the venue.|Точная цена блюда не подтверждена. Уточните в заведении.
+ადგილზე გადახდილი ფასი · მომხმარებლის ინფორმაციით|Price paid at the venue · reported by a visitor|Цена на месте · по информации посетителя
+მიტანის მენიუს ფასი · ადგილზე შეიძლება განსხვავდებოდეს|Delivery menu price · may differ at the venue|Цена в меню доставки · на месте может отличаться
+ობიექტის ონლაინ მენიუს ფასი|Venue's online menu price|Цена в онлайн-меню заведения
+გადამოწმებულია: |Checked: |Проверено:
+ფასის წყარო|Price source|Источник цены
+ყველა|All|Все
 თბილისი|Tbilisi|Тбилиси
 ასურეთი|Asureti|Асурети
 ფასანაური|Pasanauri|Пасанаури
@@ -158,9 +165,9 @@ Google Maps-ზე ნახვა|View on Google Maps|Открыть в Google 
 აირჩიე კონკრეტული ფილიალი ქვემოთ.|Choose a branch below.|Выберите филиал ниже.
 დარეკვა|Call|Позвонить
 რუკა|Map|Карта
-რუკაზე ნახვა: |View map: |Посмотреть на карте: 
+რუკაზე ნახვა: |View map: |Посмотреть на карте:
  — ამბის წაკითხვა| — Read more| — Подробнее
-შენი არჩევანი: |Your selection: |Ваш выбор: 
+შენი არჩევანი: |Your selection: |Ваш выбор:
 ბიუჯეტი დასაზუსტებელია|Budget to be confirmed|Бюджет уточняется
 ბიუჯეტური · ≤30 ₾|Budget · ≤30 ₾|Недорого · ≤30 ₾
 საშუალო · 30–60 ₾|Mid-range · 30–60 ₾|Средний · 30–60 ₾
@@ -199,7 +206,7 @@ Google Maps-ზე ნახვა|View on Google Maps|Открыть в Google 
   function priceLabel(location,lang=language){
     const value=root.TasteFinder.priceLabel(location);
     if(lang==='ka')return value;
-    return value.replace('ბიუჯეტი დასაზუსტებელია',t('ბიუჯეტი დასაზუსტებელია',lang)).replace('₾-დან / ადამიანი',lang==='en'?'₾+ / person':'₾+ / человек').replace('₾ / ადამიანი',lang==='en'?'₾ / person':'₾ / человек');
+    return value.replace('₾ / ცალი',lang==='en'?'₾ / piece':'₾ / шт.').replace('ბიუჯეტი დასაზუსტებელია',t('ბიუჯეტი დასაზუსტებელია',lang)).replace('₾-დან / ადამიანი',lang==='en'?'₾+ / person':'₾+ / человек').replace('₾ / ადამიანი',lang==='en'?'₾ / person':'₾ / человек');
   }
   const api={t,place,address,priceLabel,transliterate,phrases,get language(){return language;},setLanguage(value){if(['ka','en','ru'].includes(value)){language=value;try{root.localStorage?.setItem('gemotaste-language',value);}catch{}}}};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.TasteI18n=api;

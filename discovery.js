@@ -76,9 +76,10 @@
   const number = value => new Intl.NumberFormat('ka-GE',{maximumFractionDigits:1}).format(value);
   function priceLabel(location) {
     const summary = priceSummary(location);
+    if(location.menuPrices?.primary){const item=location.menuPrices.items[0];return number(item.amount)+' ₾ / ცალი';}
     if (!summary) return 'ბიუჯეტი დასაზუსტებელია';
-    if (summary.openEnded) return number(summary.min) + ' ₾-დან / ადამიანი';
-    return number(summary.minAverage) + (summary.maxAverage !== summary.minAverage ? '–' + number(summary.maxAverage) : '') + ' ₾ / ადამიანი';
+    if (summary.openEnded) return '≈ '+number(summary.min) + ' ₾-დან / ადამიანი';
+    return '≈ '+number(summary.min) + (summary.max !== summary.min ? '–' + number(summary.max) : '') + ' ₾ / ადამიანი';
   }
   const noise = new Set(['i','want','would','like','food','please','and','in','a','an','the','to','eat','me','some','with','friendly','მინდა','საჭმელი','საკვები','და','მომიძებნე','მაჩვენე','ვეძებ','მსურს','რაღაც','хочу','хочется','найди','найти','покажи','мне','я','еда','еду','кухня','кухню','поесть','пожалуйста','и','в','на','с','для','где','есть']);
   function parseQuery(query) {

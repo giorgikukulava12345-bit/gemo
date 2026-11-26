@@ -4,7 +4,7 @@
 const addedLocations = [
   {
     name: 'ლოქო', city: 'ახალდაბა (ბორჯომის გზა)', category: 'რეგიონები',
-    imageSrc: 'loqo-exterior.png',
+    imageSrc: 'assets/optimized/f621e4105a57cabb.webp',
     dish: 'ხაჭაპური და მწვადი', teaser: 'ხაჭაპური და უგემრიელესი მწვადი ახალდაბაში, ბორჯომის გზაზე.',
     story: ['„ლოქო“ დაბა ახალდაბაში, ბორჯომისკენ მიმავალ გზაზე მდებარეობს. გზამკვლევის რეკომენდაციაა ხაჭაპური და უგემრიელესი მწვადი.'],
     dishes: ['ხაჭაპური', 'მწვადი'], maps: 'რესტორანი ლოქო ახალდაბა ბორჯომი',
@@ -137,7 +137,7 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "Veriko",
-    "imageSrc": "photo-veriko.jpg",
+    "imageSrc": "assets/optimized/f1d387095556c5bd.webp",
     "source": "https://wolt.com/en/geo/tbilisi/restaurant/veriko"
   },
   {
@@ -158,7 +158,7 @@ addedLocations.push(...[
       "იტალიური"
     ],
     "aliases": "Napoli pizza მარიჯანი",
-    "imageSrc": "photo-napoli.jpg",
+    "imageSrc": "assets/optimized/fe00c2d1e87bd69d.webp",
     "source": "https://bm.ge/en/news/napoli-expands-pizzeria-opens-a-new-bar-in-tbilisi"
   },
   {
@@ -179,7 +179,7 @@ addedLocations.push(...[
       "საკონდიტრო"
     ],
     "aliases": "Dodonut დოდონატის",
-    "imageSrc": "photo-dodonut.jpg",
+    "imageSrc": "assets/optimized/3fc3e5c37814afc1.webp",
     "source": "https://wolt.com/en/geo/tbilisi/restaurant/dodonut"
   },
   {
@@ -200,7 +200,7 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "Story",
-    "imageSrc": "photo-story.jpg",
+    "imageSrc": "assets/optimized/ba2e5b6f1745f1c7.webp",
     "source": "https://restaurantguru.com/Story-House-Kutaisi"
   },
   {
@@ -221,7 +221,7 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "Giuaani winery ღვინო",
-    "imageSrc": "photo-giuaani.jpg",
+    "imageSrc": "assets/optimized/6ca800dab90f59f6.webp",
     "source": "https://giuaani.ge/ka/about-us/"
   },
   {
@@ -242,7 +242,7 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "Tsetskhli Ainto",
-    "imageSrc": "photo-tsetskhli.jpg",
+    "imageSrc": "assets/optimized/6456361e65dce875.webp",
     "source": "https://www.yell.ge/company.php?id=157615&lan=geo"
   },
   {
@@ -263,7 +263,7 @@ addedLocations.push(...[
       "იაპონური"
     ],
     "aliases": "Sushi Room",
-    "imageSrc": "photo-sushiroom.jpg",
+    "imageSrc": "assets/optimized/1e8efbd1f08bbf98.webp",
     "source": "https://sushiroom.ge/en/contact/"
   },
   {
@@ -284,7 +284,7 @@ addedLocations.push(...[
       "სწრაფი კვება"
     ],
     "aliases": "McDonald's McDonalds Big Taste ბიგ თეისთი ბურგერი",
-    "imageSrc": "photo-mcdonalds.jpg",
+    "imageSrc": "assets/optimized/53d82f6b4acc06de.webp",
     "source": "https://mcdonalds.ge/"
   },
   {
@@ -305,7 +305,7 @@ addedLocations.push(...[
       "ევროპული"
     ],
     "aliases": "Lolita gnocchi",
-    "imageSrc": "photo-lolita.jpg",
+    "imageSrc": "assets/optimized/b2bd75a578dabaca.webp",
     "source": "https://aqc.ge/places/lolita"
   },
   {
@@ -327,7 +327,7 @@ addedLocations.push(...[
       "ევროპული"
     ],
     "aliases": "ჩინ ჩინ ცინ ცინ",
-    "imageSrc": "photo-cincin.jpg",
+    "imageSrc": "assets/optimized/2d6ce30b13281bca.webp",
     "source": "https://wolt.com/en/geo/tbilisi/restaurant/restsurants-cin-cin",
     "phone": "551 16 95 59"
   },
@@ -350,7 +350,7 @@ addedLocations.push(...[
       "ევროპული"
     ],
     "aliases": "Ghumeli",
-    "imageSrc": "photo-ghumeli.jpg",
+    "imageSrc": "assets/optimized/3cabdd0c1725a4fa.webp",
     "source": "https://ge.ik.gaultmillau.com/en/restaurants/ghumeli"
   },
   {
@@ -372,7 +372,7 @@ addedLocations.push(...[
       "ევროპული"
     ],
     "aliases": "ამო",
-    "imageSrc": "photo-amo.jpg",
+    "imageSrc": "assets/optimized/de147593458aba0e.webp",
     "source": "https://amo-restaurant.com/",
     "phone": "505 55 90 55"
   },
@@ -395,7 +395,7 @@ addedLocations.push(...[
       "ევროპული"
     ],
     "aliases": "Grilsi გრილისი გრილზი",
-    "imageSrc": "photo-grilisi.jpg",
+    "imageSrc": "assets/optimized/cd89b8611b1aeee8.webp",
     "source": "https://yandex.com.ge/maps/org/grilisi_grill_bar/154583949468/",
     "phone": "591 11 07 86"
   },
@@ -417,7 +417,7 @@ addedLocations.push(...[
       "საკონდიტრო"
     ],
     "aliases": "Dona confectionery",
-    "imageSrc": "photo-dona.jpg",
+    "imageSrc": "assets/optimized/7820b6883ad9be0d.webp",
     "source": "https://yandex.com.ge/maps/org/dona/80849245070/"
   },
   {
@@ -438,7 +438,7 @@ addedLocations.push(...[
       "ევროპული"
     ],
     "aliases": "Barbatus",
-    "imageSrc": "photo-barbatus.jpg",
+    "imageSrc": "assets/optimized/3aed06603b81341e.webp",
     "source": "https://barbatus.ge/"
   },
   {
@@ -463,7 +463,7 @@ addedLocations.push(...[
       "ავსტრიული"
     ],
     "aliases": "Austrian Brewery",
-    "imageSrc": "photo-austrian.jpg",
+    "imageSrc": "assets/optimized/8c36e32c39acda75.webp",
     "source": "https://www.yell.ge/company.php?id=152774&lan=eng"
   },
   {
@@ -486,7 +486,7 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "Diaroni",
-    "imageSrc": "photo-diaroni.jpg",
+    "imageSrc": "assets/optimized/408739bcfb35f404.webp",
     "source": "https://www.yell.ge/company.php?id=134206&lan=geo"
   },
   {
@@ -507,7 +507,7 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "Cecilia City Cafe ცეცილია სესილი",
-    "imageSrc": "photo-cecilia.jpg",
+    "imageSrc": "assets/optimized/02cc9b987edff57c.webp",
     "source": "https://www.yell.ge/company.php?id=131188&lan=eng"
   },
   {
@@ -529,7 +529,7 @@ addedLocations.push(...[
       "იაპონური"
     ],
     "aliases": "Oishi Sushi სუში",
-    "imageSrc": "photo-oishi.jpg",
+    "imageSrc": "assets/optimized/9f618b12dea2043c.webp",
     "source": "https://rezto.ge/reservation/oishisushikazbegi"
   },
   {
@@ -552,7 +552,7 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "Kachretis Chempioni Kachreti Champion",
-    "imageSrc": "photo-champion.jpg",
+    "imageSrc": "assets/optimized/2f077de761a041c5.webp",
     "source": "https://chempioni.ge/"
   },
   {
@@ -573,7 +573,7 @@ addedLocations.push(...[
       "იტალიური"
     ],
     "aliases": "La Burrata",
-    "imageSrc": "photo-burrata-interior.jpg",
+    "imageSrc": "assets/optimized/b3209c61b3f48a2c.webp",
     "imagePosition": "center 68%",
     "source": "https://yandex.com.ge/maps/org/la_burrata/241485503770/"
   },
@@ -596,7 +596,7 @@ addedLocations.push(...[
       "ევროპული"
     ],
     "aliases": "Cafe 43",
-    "imageSrc": "photo-cafe43.jpg",
+    "imageSrc": "assets/optimized/a9a399fd8012f531.webp",
     "source": "https://www.cafe43.ge/ge/menu"
   },
   {
@@ -617,7 +617,7 @@ addedLocations.push(...[
       "ევროპული"
     ],
     "aliases": "Mova Maisi cafe კაფე",
-    "imageSrc": "photo-movamaisi.jpg",
+    "imageSrc": "assets/optimized/28adc17f7003c57b.webp",
     "source": "https://www.remote.ge/tbilisi/cafes/mova-maisi"
   },
   {
@@ -639,7 +639,7 @@ addedLocations.push(...[
       "ევროპული"
     ],
     "aliases": "Bernard Tabidze პელმენი",
-    "imageSrc": "photo-bernard.jpg",
+    "imageSrc": "assets/optimized/fb9ed06a4b56045a.webp",
     "source": "https://www.yell.ge/company.php?id=143224&lan=eng"
   },
   {
@@ -660,7 +660,7 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "Gastronomy Gavasheli",
-    "imageSrc": "photo-gavasheli.jpg",
+    "imageSrc": "assets/optimized/c7582d5f3d8ba2cb.webp",
     "source": "https://gg.com.ge/"
   },
   {
@@ -682,7 +682,7 @@ addedLocations.push(...[
       "იაპონური"
     ],
     "aliases": "Bangkok Atskuri",
-    "imageSrc": "photo-bangkok.jpg",
+    "imageSrc": "assets/optimized/f9d02a8607362b9f.webp",
     "source": "https://bangkok.ge/"
   },
   {
@@ -704,7 +704,7 @@ addedLocations.push(...[
       "ევროპული"
     ],
     "aliases": "Tsaze მუსიკა მომსახურება",
-    "imageSrc": "photo-tsaze.jpg",
+    "imageSrc": "assets/optimized/d4611da93e7538ac.webp",
     "source": "https://restaurantguru.com/tsaze-Tsaze-Tbilisi"
   },
   {
@@ -725,7 +725,7 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "Wine Factory N1 ღვინის ქარხანა ნომერი 1",
-    "imageSrc": "photo-winefactory.jpg",
+    "imageSrc": "assets/optimized/9e103a033d5c9cc8.webp",
     "source": "https://www.waze.com/live-map/directions/ge/tbilisi/tbilisi/wine-factory-n1?to=place.ChIJKWfGa9oNREARTki4DTE8akw"
   },
   {
@@ -746,7 +746,7 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "8000 Vintages",
-    "imageSrc": "photo-vintages.jpg",
+    "imageSrc": "assets/optimized/15ae5753cdff39ad.webp",
     "source": "https://8000vintages.ge/"
   },
   {
@@ -767,7 +767,7 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "Chemtan Avlabari",
-    "imageSrc": "photo-chemtan.jpg",
+    "imageSrc": "assets/optimized/698c1d2c292e6626.webp",
     "source": "https://yandex.com.ge/maps/org/restaurant_chemtan_/72381903440/",
     "menuUrl": "https://www.facebook.com/Restauranttchemtan/"
   },
@@ -789,7 +789,7 @@ addedLocations.push(...[
       "ევროპული"
     ],
     "aliases": "Majorelle Blue",
-    "imageSrc": "photo-majorelle.jpg",
+    "imageSrc": "assets/optimized/e6e2925281374683.webp",
     "source": "https://yandex.com.ge/maps/org/majorelle_blue/198154715479/"
   },
   {
@@ -810,7 +810,7 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "Zala Restaurant Cellar",
-    "imageSrc": "photo-zala.jpg",
+    "imageSrc": "assets/optimized/18670350e0185584.webp",
     "source": "https://www.zala.ge/en"
   },
   {
@@ -833,7 +833,7 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "Kabadoni Sighnaghi",
-    "imageSrc": "photo-kabadoni.jpg",
+    "imageSrc": "assets/optimized/516f03df2496959b.webp",
     "source": "https://visitsighnaghi.com/en/kabadoni"
   },
   {
@@ -854,7 +854,7 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "Ethnographer Ethnograph",
-    "imageSrc": "photo-ethnographer.jpg",
+    "imageSrc": "assets/optimized/0df4963eb5a72578.webp",
     "source": "https://wolt.com/en/geo/tbilisi/restaurant/ethnographer"
   },
   {
@@ -876,7 +876,7 @@ addedLocations.push(...[
       "ევროპული"
     ],
     "aliases": "Cekhi Tsekhi Zeche",
-    "imageSrc": "photo-cekhi.jpg",
+    "imageSrc": "assets/optimized/26ce4dd1973efaba.webp",
     "source": "https://www.cekhi.ge/"
   },
   {
@@ -897,7 +897,7 @@ addedLocations.push(...[
       "სწრაფი კვება"
     ],
     "aliases": "Tsitsila Bistro Kostava chicken sandwich",
-    "imageSrc": "photo-tsitsila.jpg",
+    "imageSrc": "assets/optimized/db916ee7ffef90a8.webp",
     "source": "https://wolt.com/en/geo/tbilisi/restaurant/tsitsila-grill-bistro"
   },
   {
@@ -918,21 +918,21 @@ addedLocations.push(...[
       "ქართული"
     ],
     "aliases": "Chveni ჩვენი ერკომაშვილი 593767713",
-    "imageSrc": "photo-chveni.jpg",
+    "imageSrc": "assets/optimized/afabc51ef3b9b2ec.webp",
     "source": "https://ge.gaultmillau.com/en/restaurants/chveni-restaurant",
     "menuUrl": "https://chefguram.kovzy.com/?lang=1",
     "phone": "593 76 77 13"
   }
 ]);
 const photoOverrides = {
-  "„ძმობის დუქანი“": "photo-existing-0.jpg",
-  "რესტორანი „დები“": "photo-existing-1.jpg",
-  "„ბიკენტიას საქაბაბე“": "photo-existing-2.jpg",
-  "რესტორანი „ნიავი“": "photo-existing-4.jpg",
-  "„ბერნი“ — Bern": "photo-existing-5.jpg",
-  "„ორი ტონა“": "photo-existing-6.jpg",
-  "„ჭაშნაგირი“ — ბელიაშვილი": "photo-existing-7.jpg",
-  "„ჭაშნაგირი“ — სანაპირო": "photo-existing-8.jpg"
+  "„ძმობის დუქანი“": "assets/optimized/bf9af7587e640856.webp",
+  "რესტორანი „დები“": "assets/optimized/5383fbd9f6718a22.webp",
+  "„ბიკენტიას საქაბაბე“": "assets/optimized/abb85e6c612ca2e9.webp",
+  "რესტორანი „ნიავი“": "assets/optimized/f23709570bb1c01a.webp",
+  "„ბერნი“ — Bern": "assets/optimized/856ea1ca9c7ab214.webp",
+  "„ორი ტონა“": "assets/optimized/05be75f03121869f.webp",
+  "„ჭაშნაგირი“ — ბელიაშვილი": "assets/optimized/6696601f76f1af26.webp",
+  "„ჭაშნაგირი“ — სანაპირო": "assets/optimized/4912889b773ccb4a.webp"
 };
 const millRecommendation=addedLocations.find(p=>p.name==='„წისქვილი“ — ბელიაშვილი');
 if(millRecommendation){millRecommendation.dish='ქაბაბი და ქართული სუფრა';millRecommendation.dishes=['ქაბაბი',...millRecommendation.dishes];}
@@ -942,6 +942,6 @@ addedLocations.push({
   teaser:'სტეიკისთვის ვაკეში, ირაკლი აბაშიძის 35-ში.',
   story:['„სტეიკჰაუსი N1“ ვაკეში, ირაკლი აბაშიძის ქუჩის 35 ნომერში მდებარეობს. გზამკვლევში სტეიკისთვის შერჩეული ადგილია.'],
   cuisines:['ევროპული'],aliases:'N1 Steakhouse Steakhouse #1 სტეიკჰაუსი#1 სტეიკის სახლი',
-  imageSrc:'photo-steakhouse-n1-exterior.png',menuUrl:'https://www.facebook.com/SteakhouseN1/',
+  imageSrc:'assets/optimized/65f58db9e15a0710.webp',menuUrl:'https://www.facebook.com/SteakhouseN1/',
   source:'https://www.google.com/maps?cid=17323277600664180727'
 });

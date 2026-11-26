@@ -4,7 +4,7 @@ const fs=require('node:fs');
 const vm=require('node:vm');
 const context=vm.createContext({TasteFinder:require('./discovery.js')});
 context.window=context;
-for(const file of ['places.js','map-data.js','contacts.js','place-translations.js','i18n.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context);
+for(const file of ['places.js','map-data.js','contacts.js','price-data.js','place-translations.js','i18n.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context);
 const html=fs.readFileSync('index.html','utf8');
 vm.runInContext(html.slice(html.indexOf('const locationsData = ['),html.indexOf('const byId =')),context);
 const places=vm.runInContext('places',context);
@@ -42,9 +42,9 @@ test('Russian natural requests combine city, dish and budget',()=>{
 });
 test('prices keep the same amounts and unknown status in all languages',()=>{
   const known=places.find(p=>p.name==='ლოქო');
-  assert.equal(i18n.priceLabel(known,'ka'),'30 ₾ / ადამიანი');
-  assert.equal(i18n.priceLabel(known,'en'),'30 ₾ / person');
-  assert.equal(i18n.priceLabel(known,'ru'),'30 ₾ / человек');
+  assert.equal(i18n.priceLabel(known,'ka'),'≈ 10–50 ₾ / ადამიანი');
+  assert.equal(i18n.priceLabel(known,'en'),'≈ 10–50 ₾ / person');
+  assert.equal(i18n.priceLabel(known,'ru'),'≈ 10–50 ₾ / человек');
   const unknown=places.find(p=>p.name==='სტეიკჰაუსი N1');
   assert.equal(i18n.priceLabel(unknown,'ru'),'Бюджет уточняется');
 });
